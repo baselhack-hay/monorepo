@@ -5,7 +5,6 @@ import passport from 'passport';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  console.log(session);
   app.use(
     session({ secret: 'my-secret', resave: false, saveUninitialized: false }),
   );
