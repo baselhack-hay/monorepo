@@ -24,7 +24,7 @@ const form = useForm({
 })
 
 const onSubmit = form.handleSubmit((values) => {
-  axios.post('https://hay-backend-dev.vercel.app/user/signup', {
+  axios.post('http://localhost:3000/user/signup', {
     username: values.username,
     password: values.password
   }).then(() => {
