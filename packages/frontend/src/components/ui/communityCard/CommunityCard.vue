@@ -10,8 +10,8 @@
   }
 
   const props = defineProps<Props>()
-  const className = computed(() => (`bg-${props.variant.valueOf()}-light`));
-//bg-surprised-light
+  console.log(props.variant)
+  const className = computed(() => (`bg-${props.variant}-light`));
 
 </script>
 <template>
