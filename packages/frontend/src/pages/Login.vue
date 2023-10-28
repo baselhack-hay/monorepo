@@ -1,16 +1,15 @@
 <script setup lang="ts">
-import {useForm} from 'vee-validate'
-import {toTypedSchema} from '@vee-validate/zod'
+import { useForm } from 'vee-validate'
+import { toTypedSchema } from '@vee-validate/zod'
 import * as z from 'zod'
 
-import {Button} from '@/components/ui/button'
+import { Button } from '@/components/ui/button'
 import {
   FormControl,
   FormField,
   FormItem,
   FormMessage,
 } from '@/components/ui/form'
-import {Input} from '@/components/ui/input'
 import axios from "axios";
 
 const formSchema = toTypedSchema(z.object({
@@ -18,21 +17,37 @@ const formSchema = toTypedSchema(z.object({
   password: z.string().min(4).max(20),
 }))
 
-// const { handleSubmit } = useForm({
-//   validationSchema: formSchema,
-// })
+const form = useForm({
+  validationSchema: formSchema,
+})
 
-const onSubmit = (values) => {
+const onSubmit = form.handleSubmit((values) => {
   axios.post('http://localhost:3000/user/signup', {
     username: values.username,
     password: values.password
+  }).then(() => {
+    router.push('/');
+  }).catch(() => {
+    console.log('uups')
   })
-}
+  return false
+})
 
 const test = () => {
-  axios.post('http://localhost:3000/user/signup', {
-    username: 'test',
+  axios.post('http://localhost:3000/user/login', {
+    username: 'Nadia',
     password: '1234'
+  }, {
+    headers: {
+      'Content-Type': 'application/json'
+    },
+  withCredentials: true  }).then(response => {
+    console.log(response);
+    axios.get('http://localhost:3000/post').then(res => {
+      console.log(res)
+    })
+  }).catch(error => {
+    console.log(error);
   })
 }
 </script>
