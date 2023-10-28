@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@heroicons/vue": "^2.0.18",
+    "@vee-validate/zod": "^4.11.8",
+    "@vueuse/core": "^10.5.0",
     "axios": "^1.6.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
@@ -17,8 +19,10 @@
     "radix-vue": "^1.0.2",
     "tailwind-merge": "^1.14.0",
     "tailwindcss-animate": "^1.0.7",
+    "vee-validate": "^4.11.8",
     "vue": "^3.3.4",
-    "vue-router": "^4.2.5"
+    "vue-router": "^4.2.5",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@types/node": "^20.8.9",

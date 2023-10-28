@@ -3,6 +3,14 @@ import { Config } from 'tailwindcss'
 const animate = require('tailwindcss-animate')
 
 module.exports = {
+  safelist: [
+    'bg-surprised-light',
+    'bg-happy-light',
+    'bg-scared-light',
+    'bg-sad-light',
+    'bg-angry-light',
+    'bg-rejecting-light'
+  ],
   darkMode: ['class'],
   content: [
     './pages/**/*.{ts,tsx,vue}',
@@ -56,7 +64,7 @@ module.exports = {
         'accordion-up': 'accordion-up 0.2s ease-out'
       },
       boxShadow: {
-        'top': '0px 0px 15px 5px rgba(0, 0, 0, 0.3)'
+        top: '0px 0px 15px 5px rgba(0, 0, 0, 0.3)'
       }
     }
   },

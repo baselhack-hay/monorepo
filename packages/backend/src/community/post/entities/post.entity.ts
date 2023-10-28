@@ -9,6 +9,15 @@ import {
 } from 'typeorm';
 import { User } from '../../../user/entities/user.entity';
 
+export enum Emotion {
+  SUPRISED = 'surprised',
+  HAPPY = 'happy',
+  SCARED = 'scared',
+  SAD = 'sad',
+  ANGRY = 'angry',
+  REJECTING = 'rejecting',
+}
+
 @Entity()
 export class Post {
   @PrimaryGeneratedColumn()
@@ -20,8 +29,15 @@ export class Post {
   @Column({ length: 512 })
   description: string;
 
-  @Column()
-  commentAmount: number;
+  // @Column()
+  // commentAmount: number;
+
+  @Column({
+    type: 'enum',
+    enum: Emotion,
+    default: Emotion.HAPPY,
+  })
+  emotion: Emotion;
 
   @CreateDateColumn()
   createdAt: Date;
