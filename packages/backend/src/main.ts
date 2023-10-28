@@ -10,11 +10,11 @@ async function bootstrap() {
   );
   app.use(passport.initialize());
   app.use(passport.session());
-  // app.enableCors({
-  //   origin: true,
-  //   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  //   allowedHeaders: 'Content-Type, Accept',
-  // });
+  app.enableCors({
+    origin: true,
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    allowedHeaders: 'Content-Type, Accept',
+  });
   await app.listen(3000);
 }
 bootstrap();
