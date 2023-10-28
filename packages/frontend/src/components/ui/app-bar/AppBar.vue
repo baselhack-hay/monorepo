@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import {
   ChatBubbleLeftRightIcon,
-  UserGroupIcon,
-  PlusIcon
+  UserGroupIcon
 } from '@heroicons/vue/24/outline'
 import router from '@/router'
 </script>
@@ -13,9 +12,6 @@ import router from '@/router'
   >
     <div class="flex w-2/5 justify-center py-4" @click="router.push('/')">
       <user-group-icon class="w-6"></user-group-icon>
-    </div>
-    <div class="my-2 flex w-1/5 justify-center rounded-xl bg-black py-2">
-      <plus-icon class="w-10 text-white"></plus-icon>
     </div>
     <div
       class="flex w-2/5 justify-center py-4"
