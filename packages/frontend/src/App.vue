@@ -1,14 +1,19 @@
 <script setup lang="ts">
 import Container from './components/Container.vue'
-
+import Header from './components/ui/header/Header.vue'
 </script>
 
 <template>
+  <Header></Header>
   <Container>
     <router-view></router-view>
   </Container>
   <nav class="p-4">
-    <router-link class="p-4 bg-blue-300 mr-2" to="/">Go to Community</router-link>
-    <router-link class="p-4 bg-blue-300" to="/innercircle">Go to Inner Circle</router-link>
+    <router-link class="bg-primary-community font-yeseva mr-2 p-4" to="/"
+      >Go to Community</router-link
+    >
+    <router-link class="bg-primary-circles font-yeseva p-4" to="/innercircle"
+      >Go to Inner Circle</router-link
+    >
   </nav>
 </template>
