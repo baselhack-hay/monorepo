@@ -1,10 +1,14 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
+import { Button } from './components/ui/button'
+
+const greet = () => {
+  console.log('How are you?')
+}
 </script>
 
 <template>
   <h1 class="text-4xl">Hay</h1>
-  <HelloWorld msg="Vite + Vue" />
+  <Button @click="() => greet()">Hay</Button>
 </template>
 
 <style scoped></style>
