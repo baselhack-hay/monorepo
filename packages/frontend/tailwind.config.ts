@@ -3,6 +3,14 @@ import { Config } from 'tailwindcss'
 const animate = require('tailwindcss-animate')
 
 module.exports = {
+  safelist: [
+    'bg-surprised-light',
+    'bg-happy-light',
+    'bg-scared-light',
+    'bg-sad-light',
+    'bg-angry-light',
+    'bg-rejecting-light'
+  ],
   darkMode: ['class'],
   content: [
     './pages/**/*.{ts,tsx,vue}',
