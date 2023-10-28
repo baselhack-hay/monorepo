@@ -5,8 +5,10 @@ import QuestionCard from '@/components/ui/question-card/QuestionCard.vue'
 
 <template>
   <main>
-    <div class="inlay flex flex-col gap-8">
-      <CircleCard v-for="_n in 10"></CircleCard>
+    <div class="inlay flex flex-col gap-y-6">
+      <CircleCard></CircleCard>
+      <CircleCard></CircleCard>
+      <CircleCard></CircleCard>
       <QuestionCard></QuestionCard>
     </div>
   </main>

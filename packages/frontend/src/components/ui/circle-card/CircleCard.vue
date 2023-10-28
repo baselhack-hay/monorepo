@@ -4,7 +4,7 @@ import { Cog6ToothIcon, ArrowRightIcon } from '@heroicons/vue/24/outline'
 
 <template>
   <div
-    class="font-yeseva text-6 flex justify-between rounded-2xl border border-black bg-white p-6 drop-shadow"
+    class="font-yeseva text-6 flex justify-between rounded-2xl bg-white p-6 drop-shadow-lg"
   >
     <span class="flex gap-x-4">
       Groupname
