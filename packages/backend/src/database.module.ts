@@ -13,7 +13,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
         username: configService.getOrThrow('POSTGRES_USER'),
         password: configService.getOrThrow('POSTGRES_PASSWORD'),
         ssl: configService.getOrThrow('POSTGRES_SSL'),
-        entities: [],
+        entities: [__dirname + '/../**/*.entity.js'],
         synchronize: true,
       }),
       inject: [ConfigService],
