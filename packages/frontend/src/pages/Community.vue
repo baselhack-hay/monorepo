@@ -1,14 +1,31 @@
 <script setup lang="ts">
-import CommunityCard from "@/components/ui/communityCard/CommunityCard.vue";
+import CommunityCard from '@/components/ui/communityCard/CommunityCard.vue'
+import router from '@/router'
 </script>
 
 <template>
   <main>
-    <h1>Community View</h1>
-    <div class="inlay flex flex-col gap-y-4">
-      <CommunityCard :number-of-comment="20" title="Title" variant="surprised" content="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy sed diam nonumy..."/>
-      <CommunityCard title="Title" variant="sad" content="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy sed diam nonumy..."/>
-      <CommunityCard :number-of-comment="25" title="Title" variant="surprised" content="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy sed diam nonumy..."/>
+    <div class="inlay flex flex-col gap-y-6">
+      <CommunityCard
+        @click="router.push('/posts/1')"
+        :number-of-comment="20"
+        title="Title"
+        variant="surprised"
+        content="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy sed diam nonumy..."
+      />
+      <CommunityCard
+        @click="router.push('/posts/2')"
+        title="Title"
+        variant="sad"
+        content="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy sed diam nonumy..."
+      />
+      <CommunityCard
+        @click="router.push('/posts/3')"
+        :number-of-comment="25"
+        title="Title"
+        variant="surprised"
+        content="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy sed diam nonumy..."
+      />
     </div>
   </main>
 </template>

@@ -1,11 +1,5 @@
 import { Post } from '../../community/post/entities/post.entity';
-import {
-  Column,
-  Entity,
-  JoinTable,
-  ManyToMany,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class User {
@@ -18,17 +12,6 @@ export class User {
   @Column()
   password: string;
 
-  @ManyToMany(() => Post)
-  @JoinTable({
-    name: 'USER_POST',
-    joinColumn: {
-      name: 'userId',
-      referencedColumnName: 'userId',
-    },
-    inverseJoinColumn: {
-      name: 'postId',
-      referencedColumnName: 'postId',
-    },
-  })
-  post: Post[];
+  @OneToMany(() => Post, (post) => post.user)
+  posts: Post[];
 }

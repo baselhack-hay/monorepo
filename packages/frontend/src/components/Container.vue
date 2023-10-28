@@ -3,12 +3,13 @@ import { useRouter } from 'vue-router'
 import { ref, watch } from 'vue'
 
 const router = useRouter()
-
 const bgColor = ref()
 
 watch(router.currentRoute, () => {
-  bgColor.value =
-    router.currentRoute.value.path == '/' ? 'white' : 'scared-light'
+  const isCommunity =
+    router.currentRoute.value.path == '/' ||
+    /^\/posts/.test(router.currentRoute.value.path)
+  bgColor.value = isCommunity ? 'white' : 'scared-light'
 })
 </script>
 
