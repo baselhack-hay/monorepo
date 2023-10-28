@@ -1,22 +1,19 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity()
-export class Post {
+Entity();
+export class Question {
   @PrimaryGeneratedColumn()
-  postId: number;
+  questionId: number;
 
-  @Column({ length: 500 })
+  @Column()
   title: string;
 
-  @Column({ length: 512 })
+  @Column()
   description: string;
 
   @Column()
-  commentAmount: number;
+  commentsAmount: number;
 
   @Column()
   createdAt: number;
-
-  @Column()
-  updatedAt: number;
 }
