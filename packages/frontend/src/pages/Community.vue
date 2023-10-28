@@ -4,14 +4,12 @@ import {PlusIcon, XMarkIcon, PaperAirplaneIcon} from "@heroicons/vue/24/outline"
 import {ref} from "vue";
 import router from '@/router'
 
-const isTextareaOpen = ref(false);
+const dialog = ref(false);
 const textareaValue = ref('');
-const setTextareaOpen = () => {
-  isTextareaOpen.value = !isTextareaOpen.value;
-};
-
+const titleValue = ref('');
 const send = () => {
-  console.log(textareaValue.value)
+  console.log(textareaValue.value);
+  console.log(titleValue.value);
 }
 </script>
 
@@ -40,20 +38,26 @@ const send = () => {
       />
     </div>
     <div class=" fixed bottom-20 w-full flex flex-row-reverse px-6">
-      <div class="rounded-xl bg-black p-3 text-center" v-if="!isTextareaOpen">
-        <plus-icon @click="setTextareaOpen()" class="w-8 text-white"></plus-icon>
-      </div>
-      <div class="w-full text-center flex flex-col drop-shadow" v-if="isTextareaOpen">
-        <span class="bg-white pt-2 px-2 w-fit rounded-t-xl">
-          <x-mark-icon @click="setTextareaOpen()" class="bg-white w-6"></x-mark-icon>
-        </span>
-        <span class="bg-white pt-3 rounded-tr-xl">
-          <textarea rows="3" v-model="textareaValue" class="w-full px-3 py-2 font-poppins"></textarea>
-        </span>
-        <span class="bg-white p-2 rounded-b-xl flex flex-row-reverse">
-          <paper-airplane-icon @click="send()" class="bg-white w-6"></paper-airplane-icon>
-        </span>
+      <div class="rounded-xl bg-black p-3 text-center" v-if="!dialog">
+        <plus-icon @click="dialog = true" class="w-8 text-white"></plus-icon>
       </div>
     </div>
+    <v-dialog
+        v-model="dialog"
+        width="auto"
+    >
+      <div class="flex bg-white rounded-lg p-4 flex-column gap-y-4">
+        <div class="w-full flex justify-between">
+          <x-mark-icon class="w-6" @click="dialog = false"/>
+        </div>
+        <v-text-field v-model="titleValue" label="Title" class="font-poppins"/>
+        <div>
+          <v-textarea v-model="textareaValue" label="Content"/>
+          <div class="w-full flex justify-between flex-row-reverse">
+            <paper-airplane-icon class="w-6" @click="send"/>
+          </div>
+        </div>
+      </div>
+    </v-dialog>
   </main>
 </template>

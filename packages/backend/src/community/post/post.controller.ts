@@ -21,7 +21,8 @@ export class PostController {
 
   @Post()
   async create(@Request() req, @Body() createPostDto: CreatePostDto) {
-    const userId = req.session.passport.user.id;
+    const userId = req.session.passport.user.userId;
+    console.log('add post for user: ', req);
     return this.postService.create(userId, createPostDto);
   }
 
