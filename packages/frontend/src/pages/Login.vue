@@ -4,9 +4,20 @@ import {Button} from '@/components/ui/button'
 import axios from "axios";
 
 const test = () => {
-  axios.post('http://localhost:3000/user/signup', {
-    username: 'test',
+  axios.post('http://localhost:3000/user/login', {
+    username: 'Nadia',
     password: '1234'
+  }, {
+    headers: {
+      'Content-Type': 'application/json'
+    },
+  withCredentials: true  }).then(response => {
+    console.log(response);
+    axios.get('http://localhost:3000/post').then(res => {
+      console.log(res)
+    })
+  }).catch(error => {
+    console.log(error);
   })
 }
 </script>
