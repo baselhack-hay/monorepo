@@ -1,15 +1,25 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Request,
+} from '@nestjs/common';
 import { GroupService } from './group.service';
 import { CreateGroupDto } from './dto/create-group.dto';
 import { UpdateGroupDto } from './dto/update-group.dto';
 
-@Controller('group')
+@Controller('/circle/group')
 export class GroupController {
   constructor(private readonly groupService: GroupService) {}
 
   @Post()
-  create(@Body() createGroupDto: CreateGroupDto) {
-    return this.groupService.create(createGroupDto);
+  create(@Request() req, @Body() createGroupDto: CreateGroupDto) {
+    const userId = req.session.passport.user.userId;
+    return this.groupService.create(userId, createGroupDto);
   }
 
   @Get()
@@ -20,6 +30,11 @@ export class GroupController {
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.groupService.findOne(+id);
+  }
+
+  @Get('/user/:id')
+  findAllByUserId(@Param('id') id: string) {
+    return this.groupService.findAllByUserId(+id);
   }
 
   @Patch(':id')
