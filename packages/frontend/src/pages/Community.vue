@@ -2,6 +2,7 @@
 import CommunityCard from "@/components/ui/communityCard/CommunityCard.vue";
 import {PlusIcon, XMarkIcon, PaperAirplaneIcon} from "@heroicons/vue/24/outline";
 import {ref} from "vue";
+import router from '@/router'
 
 const isTextareaOpen = ref(false);
 const textareaValue = ref('');
@@ -16,10 +17,27 @@ const send = () => {
 
 <template>
   <main>
-    <div class="inlay flex flex-col gap-y-4">
-      <CommunityCard :number-of-comment="20" title="Title" variant="surprised" content="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy sed diam nonumy..."/>
-      <CommunityCard title="Title" variant="sad" content="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy sed diam nonumy..."/>
-      <CommunityCard :number-of-comment="25" title="Title" variant="surprised" content="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy sed diam nonumy..."/>
+    <div class="inlay flex flex-col gap-y-6">
+      <CommunityCard
+        @click="router.push('/posts/1')"
+        :number-of-comment="20"
+        title="Title"
+        variant="surprised"
+        content="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy sed diam nonumy..."
+      />
+      <CommunityCard
+        @click="router.push('/posts/2')"
+        title="Title"
+        variant="sad"
+        content="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy sed diam nonumy..."
+      />
+      <CommunityCard
+        @click="router.push('/posts/3')"
+        :number-of-comment="25"
+        title="Title"
+        variant="surprised"
+        content="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy sed diam nonumy..."
+      />
     </div>
     <div class=" fixed bottom-20 w-full flex flex-row-reverse px-6">
       <div class="rounded-xl bg-black p-3 text-center" v-if="!isTextareaOpen">
