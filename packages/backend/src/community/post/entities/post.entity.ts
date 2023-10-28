@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { CreateDateColumn, UpdateDateColumn, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class Post {
@@ -14,9 +14,9 @@ export class Post {
   @Column()
   commentAmount: number;
 
-  @Column()
-  createdAt: number;
+  @CreateDateColumn()
+  createdAt: Date;
 
-  @Column()
-  updatedAt: number;
+  @UpdateDateColumn()
+  updatedAt: Date;
 }
