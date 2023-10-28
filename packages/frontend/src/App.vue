@@ -9,11 +9,11 @@ import Header from './components/ui/header/Header.vue'
     <router-view></router-view>
   </Container>
   <nav class="p-4">
-    <router-link class="bg-primary-community font-yeseva mr-2 p-4" to="/"
-      >Go to Community</router-link
-    >
-    <router-link class="bg-primary-circles font-yeseva p-4" to="/innercircle"
-      >Go to Inner Circle</router-link
-    >
+    <router-link class="bg-primary-community font-yeseva mr-2 p-4" to="/">
+      Go to Community
+    </router-link>
+    <router-link class="bg-primary-circles font-yeseva p-4" to="/innercircles">
+      Go to Inner Circles
+    </router-link>
   </nav>
 </template>

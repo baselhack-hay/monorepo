@@ -1,5 +1,7 @@
 <script setup lang="ts">
 
+  import {computed} from "vue";
+
   interface Props {
     title: string;
     content: string;
@@ -8,12 +10,13 @@
   }
 
   const props = defineProps<Props>()
-  const className = `bg-${props.variant}-light`;
+  const className = computed(() => (`bg-${props.variant.valueOf()}-light`));
+//bg-surprised-light
 
 </script>
 <template>
-  <div :class="className">
-    <h2>{{props.title}}</h2>
+  <div :class="className" class="rounded-lg p-4">
+    <h2 class="text-6">{{props.title}}</h2>
     <p>{{props.content}}</p>
     <p v-if="props.numberOfComment!!">Number of Commits: {{props.numberOfComment}}</p>
   </div>
