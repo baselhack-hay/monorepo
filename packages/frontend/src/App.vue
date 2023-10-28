@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Container from './components/Container.vue'
 import Header from './components/ui/header/Header.vue'
+import AppBar from "@/components/ui/app-bar/AppBar.vue";
 </script>
 
 <template>
@@ -8,12 +9,5 @@ import Header from './components/ui/header/Header.vue'
   <Container>
     <router-view></router-view>
   </Container>
-  <nav class="p-4">
-    <router-link class="bg-primary-community font-yeseva mr-2 p-4" to="/">
-      Go to Community
-    </router-link>
-    <router-link class="bg-primary-circles font-yeseva p-4" to="/innercircles">
-      Go to Inner Circles
-    </router-link>
-  </nav>
+  <AppBar></AppBar>
 </template>

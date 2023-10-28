@@ -29,16 +29,16 @@ export class Post {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @ManyToMany(type => User)
+  @ManyToMany((type) => User)
   @JoinTable({
     name: 'USER_POST',
     joinColumn: {
-      name: 'postID',
-      referencedColumnName: 'postID',
+      name: 'postId',
+      referencedColumnName: 'postId',
     },
     inverseJoinColumn: {
-      name: 'userID',
-      referencedColumnName: 'userID',
+      name: 'userId',
+      referencedColumnName: 'userId',
     },
   })
   User: User[];

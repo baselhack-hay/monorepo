@@ -7,12 +7,12 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'community',
+      name: 'Community',
       component: Community
     },
     {
       path: '/innercircles',
-      name: 'innercircles',
+      name: 'Inner Circles',
       component: InnerCircles
     }
   ]
