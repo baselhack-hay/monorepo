@@ -5,8 +5,10 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   ManyToOne,
+  OneToMany,
 } from 'typeorm';
 import { User } from '../../../user/entities/user.entity';
+import { Comment } from '../../comment/entities/comment.entity';
 
 export enum Emotion {
   SUPRISED = 'surprised',
@@ -46,4 +48,7 @@ export class Post {
 
   @ManyToOne(() => User, (user) => user.posts)
   user: User;
+
+  @OneToMany(() => Comment, (comment) => comment.post)
+  comments: Comment[];
 }
