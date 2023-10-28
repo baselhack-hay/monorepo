@@ -3,7 +3,7 @@ import Community from '@/pages/Community.vue'
 import InnerCircles from '@/pages/InnerCircles.vue'
 import Login from '@/pages/Login.vue'
 import Post from '@/pages/Post.vue'
-import { QuestionInput } from '@/components/ui/question-input'
+import Question from '@/pages/Question.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -31,7 +31,7 @@ const router = createRouter({
     {
       path: '/question',
       name: 'Question',
-      component: QuestionInput
+      component: Question
     }
   ]
 })
