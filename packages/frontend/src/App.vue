@@ -7,10 +7,10 @@ import Container from './components/Container.vue'
     <router-view></router-view>
   </Container>
   <nav class="p-4">
-    <router-link class="bg-primary-community mr-2 p-4" to="/"
+    <router-link class="bg-primary-community font-yeseva mr-2 p-4" to="/"
       >Go to Community</router-link
     >
-    <router-link class="bg-primary-circles p-4" to="/innercircle"
+    <router-link class="bg-primary-circles font-yeseva p-4" to="/innercircle"
       >Go to Inner Circle</router-link
     >
   </nav>

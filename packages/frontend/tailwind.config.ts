@@ -19,9 +19,8 @@ module.exports = {
       }
     },
     colors: {
-      primary: '#65a30d',
-      secondary: '#365314',
       black: '#111111',
+      white: '#FFFFFF',
       'primary-community': '#5FDDBF',
       'primary-community-light': '#A1EEDB',
       'primary-circles': '#DF7FEF',
@@ -40,6 +39,10 @@ module.exports = {
       'rejecting-light': '#F9D2B6'
     },
     extend: {
+      fontFamily: {
+        yeseva: ['Yeseva One', 'serif'],
+        poppins: ['Poppins', 'sans-serif']
+      },
       keyframes: {
         'accordion-down': {
           from: { height: '0' },
