@@ -14,5 +14,8 @@
     "semi": false,
     "singleQuote": true,
     "trailingComma": "none"
+  },
+  "dependencies": {
+    "vue-router": "^4.2.5"
   }
 }

@@ -1,20 +1,14 @@
 <script setup lang="ts">
-import { Button } from './components/ui/button'
 import Container from './components/Container.vue'
 
-const greet = () => {
-  console.log('How are you?')
-}
 </script>
 
 <template>
   <Container>
-    <h1 class="text-4xl">Hay</h1>
-    <div class="flex items-center gap-2">
-      <Button @click="() => greet()">Hay</Button>
-      <Button variant="secondary" @click="() => greet()">Hay</Button>
-    </div>
+    <router-view></router-view>
   </Container>
+  <nav class="p-4">
+    <router-link class="p-4 bg-blue-300 mr-2" to="/">Go to Community</router-link>
+    <router-link class="p-4 bg-blue-300" to="/innercircle">Go to Inner Circle</router-link>
+  </nav>
 </template>
-
-<style scoped></style>
