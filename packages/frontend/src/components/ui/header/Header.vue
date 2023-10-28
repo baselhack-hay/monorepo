@@ -1,9 +1,20 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useRouter } from 'vue-router'
+import { ref, watch } from 'vue'
+const router = useRouter()
+
+const pageName = ref()
+
+watch(router.currentRoute, () => {
+  pageName.value = router.currentRoute.value.name
+})
+</script>
 
 <template>
   <header
-    class="grid place-items-center rounded-b-2xl bg-white p-4 backdrop-blur-md"
+    class="font-yeseva fixed z-50 w-full rounded-b-2xl border-2 border-white bg-white bg-opacity-70 p-4 text-center shadow-md backdrop-blur-md"
   >
-    <h2 class="font-yeseva text-3xl font-semibold text-black">HAY</h2>
+    <h1 class="text-6">HAY</h1>
+    <h2 class="text-5">{{ pageName }}</h2>
   </header>
 </template>
