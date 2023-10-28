@@ -9,7 +9,7 @@ import router from '@/router'
 
 <template>
   <div
-    class="shadow-top fixed bottom-0 flex w-full justify-between rounded-t-2xl"
+    class="shadow-top fixed bottom-0 z-50 flex w-full justify-between rounded-t-2xl border-2 border-white bg-white bg-opacity-70 backdrop-blur-md"
   >
     <div class="flex w-2/5 justify-center py-4" @click="router.push('/')">
       <user-group-icon class="w-6"></user-group-icon>
