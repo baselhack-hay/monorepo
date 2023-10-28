@@ -1,4 +1,5 @@
 import { Config } from 'tailwindcss'
+
 const animate = require('tailwindcss-animate')
 
 module.exports = {
@@ -17,11 +18,28 @@ module.exports = {
         '2xl': '1400px'
       }
     },
+    colors: {
+      primary: '#65a30d',
+      secondary: '#365314',
+      black: '#111111',
+      'primary-community': '#5FDDBF',
+      'primary-community-light': '#A1EEDB',
+      'primary-circles': '#DF7FEF',
+      'primary-circles-light': '#EDB8F5',
+      surprised: '#FCD529',
+      'surprised-light': '#FFEDBD',
+      happy: '#8ADE63',
+      'happy-light': '#B7EEB5',
+      scared: '#70C4E8',
+      'scared-light': '#BEE1F4',
+      sad: '#BF8DDE',
+      'sad-light': '#E1CDF0',
+      angry: '#FA97AF',
+      'angry-light': '#F2C6D8',
+      rejecting: '#FDBE5B',
+      'rejecting-light': '#F9D2B6'
+    },
     extend: {
-      colors: {
-        primary: '#65a30d',
-        secondary: '#365314'
-      },
       keyframes: {
         'accordion-down': {
           from: { height: '0' },
