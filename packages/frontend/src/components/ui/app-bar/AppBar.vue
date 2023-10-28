@@ -1,19 +1,26 @@
 <script setup lang="ts">
-import {ChatBubbleLeftRightIcon, UserGroupIcon, PlusIcon} from '@heroicons/vue/24/outline'
-import router from '@/router';
-
-
+import {
+  ChatBubbleLeftRightIcon,
+  UserGroupIcon,
+  PlusIcon
+} from '@heroicons/vue/24/outline'
+import router from '@/router'
 </script>
 
 <template>
-  <div class="fixed bottom-0 flex justify-between w-full rounded-t-2xl shadow-top">
-    <div class="py-4 w-2/5 flex justify-center" @click="router.push('/')">
+  <div
+    class="shadow-top fixed bottom-0 flex w-full justify-between rounded-t-2xl"
+  >
+    <div class="flex w-2/5 justify-center py-4" @click="router.push('/')">
       <user-group-icon class="w-6"></user-group-icon>
     </div>
-    <div class="py-2 w-1/5 flex justify-center bg-black rounded-xl my-2">
+    <div class="my-2 flex w-1/5 justify-center rounded-xl bg-black py-2">
       <plus-icon class="w-10 text-white"></plus-icon>
     </div>
-    <div class="py-4 w-2/5 flex justify-center" @click="router.push('/innercircle')">
+    <div
+      class="flex w-2/5 justify-center py-4"
+      @click="router.push('/innercircles')"
+    >
       <chat-bubble-left-right-icon class="w-6"></chat-bubble-left-right-icon>
     </div>
   </div>
