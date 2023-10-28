@@ -5,7 +5,7 @@ import router from '@/router'
 
 <template>
   <main>
-    <div class="inlay flex flex-col gap-y-4">
+    <div class="inlay flex flex-col gap-y-6">
       <CommunityCard
         @click="router.push('/posts/1')"
         :number-of-comment="20"
