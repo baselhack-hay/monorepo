@@ -12,7 +12,7 @@ import {
 import { PostService } from './post.service';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
-import { AuthenticatedGuard } from 'src/user/authenticated.guard';
+import { AuthenticatedGuard } from '../../user/authenticated.guard';
 
 @Controller('post')
 @UseGuards(AuthenticatedGuard)
