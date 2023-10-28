@@ -15,7 +15,7 @@
 
 </script>
 <template>
-  <div :class="className" class="rounded-lg p-4">
+  <div :class="className" class="rounded-lg p-4 drop-shadow">
     <h2 class="text-6 font-yeseva">{{props.title}}</h2>
     <p class="font-poppins">{{props.content}}</p>
     <div class="mt-2" v-if="props.numberOfComment!! ">
