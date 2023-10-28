@@ -14,7 +14,10 @@ watch(router.currentRoute, () => {
 </script>
 
 <template>
-  <div :class="`bg-${bgColor} h-full pb-[72px] pt-[102px]`">
+  <div v-if="router.currentRoute.value.path !== '/login'" :class="`bg-${bgColor} h-full pb-[72px] pt-[102px]`">
+    <slot />
+  </div>
+  <div v-else>
     <slot />
   </div>
 </template>
