@@ -1,4 +1,13 @@
-import { CreateDateColumn, UpdateDateColumn, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  CreateDateColumn,
+  UpdateDateColumn,
+  Column,
+  Entity,
+  PrimaryGeneratedColumn,
+  JoinTable,
+  ManyToMany,
+} from 'typeorm';
+import { User } from '../../../user/entities/user.entity';
 
 @Entity()
 export class Post {
@@ -19,4 +28,18 @@ export class Post {
 
   @UpdateDateColumn()
   updatedAt: Date;
+
+  @ManyToMany(type => User)
+  @JoinTable({
+    name: 'USER_POST',
+    joinColumn: {
+      name: 'postID',
+      referencedColumnName: 'postID',
+    },
+    inverseJoinColumn: {
+      name: 'userID',
+      referencedColumnName: 'userID',
+    },
+  })
+  User: User[];
 }
