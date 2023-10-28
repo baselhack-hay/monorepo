@@ -18,28 +18,44 @@ const formSchema = toTypedSchema(z.object({
   password: z.string().min(4).max(20),
 }))
 
-// const { handleSubmit } = useForm({
-//   validationSchema: formSchema,
-// })
 
-const onSubmit = (values) => {
-  axios.post('http://localhost:3000/user/signup', {
+const form = useForm({
+  validationSchema: formSchema,
+})
+
+const onSubmit = form.handleSubmit((values) => {
+  axios.post('https://hay-backend-dev.vercel.app/user/signup', {
     username: values.username,
     password: values.password
+  }).then(() => {
+    router.push('/');
+  }).catch(() => {
+    console.log('uups')
   })
-}
+  return false
+})
 
 const test = () => {
-  axios.post('http://localhost:3000/user/signup', {
-    username: 'test',
+  axios.post('https://hay-backend-dev.vercel.app/user/login', {
+    username: 'Nadia',
     password: '1234'
+  }, {
+    headers: {
+      'Content-Type': 'application/json'
+    }}).then(response => {
+    console.log(response);
+    axios.get('https://hay-backend-dev.vercel.app/post').then(res => {
+      console.log(res)
+    })
+  }).catch(error => {
+    console.log(error);
   })
 }
 </script>
 
 <template>
   <main class="inlay">
-    <form @submit="onSubmit">
+    <Form onsubmit="test(); return false">
       <FormField v-slot="{ username }" name="username">
         <FormItem>
           <FormControl>
@@ -56,9 +72,11 @@ const test = () => {
           <FormMessage />
         </FormItem>
       </FormField>
-      <Button @click="test()" variant="outline">
-        Submit
-      </Button>
+<!--      <Button type="submit">-->
+<!--        Submit-->
+<!--      </Button>-->
     </Form>
+
+    <Button @click="test()">Test</Button>
   </main>
 </template>
