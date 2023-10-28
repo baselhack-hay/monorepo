@@ -6,18 +6,23 @@ import {
   Patch,
   Param,
   Delete,
+  Request,
+  UseGuards,
 } from '@nestjs/common';
 import { PostService } from './post.service';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
+import { AuthenticatedGuard } from 'src/user/authenticated.guard';
 
 @Controller('post')
+@UseGuards(AuthenticatedGuard)
 export class PostController {
   constructor(private readonly postService: PostService) {}
 
   @Post()
-  create(@Body() createPostDto: CreatePostDto) {
-    return this.postService.create(createPostDto);
+  async create(@Request() req, @Body() createPostDto: CreatePostDto) {
+    const userId = req.session.passport.user.id;
+    return this.postService.create(userId, createPostDto);
   }
 
   @Get()

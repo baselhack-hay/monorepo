@@ -4,8 +4,7 @@ import {
   Column,
   Entity,
   PrimaryGeneratedColumn,
-  JoinTable,
-  ManyToMany,
+  ManyToOne,
 } from 'typeorm';
 import { User } from '../../../user/entities/user.entity';
 
@@ -45,17 +44,6 @@ export class Post {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @ManyToMany((type) => User)
-  @JoinTable({
-    name: 'USER_POST',
-    joinColumn: {
-      name: 'postId',
-      referencedColumnName: 'postId',
-    },
-    inverseJoinColumn: {
-      name: 'userId',
-      referencedColumnName: 'userId',
-    },
-  })
-  User: User[];
+  @ManyToOne(() => User, (user) => user.posts)
+  user: User;
 }
