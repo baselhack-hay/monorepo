@@ -6,7 +6,10 @@ const router = useRouter()
 const pageName = ref()
 
 watch(router.currentRoute, () => {
-  pageName.value = router.currentRoute.value.name
+  pageName.value = [
+    router.currentRoute.value.name,
+    router.currentRoute.value.params.id ?? ''
+  ].join(' ')
 })
 </script>
 
