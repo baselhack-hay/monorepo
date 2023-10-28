@@ -4,6 +4,8 @@ import {
   PrimaryGeneratedColumn,
   JoinColumn,
   ManyToOne,
+  ManyToMany,
+  JoinTable,
 } from 'typeorm';
 import { User } from '../../../user/entities/user.entity';
 
@@ -11,13 +13,6 @@ import { User } from '../../../user/entities/user.entity';
 export class Group {
   @PrimaryGeneratedColumn()
   groupId: number;
-
-  @Column()
-  userId: number;
-
-  @ManyToOne((type) => User)
-  @JoinColumn({ name: 'userId', referencedColumnName: 'userId' })
-  User: User;
 
   /*@ManyToOne(type => Category)
 @JoinColumn([
@@ -31,4 +26,18 @@ category: Category;*/
 
   @Column()
   description: string;
+
+  @ManyToMany((type) => User)
+  @JoinTable({
+    name: 'GROUP_USER',
+    joinColumn: {
+      name: 'group',
+      referencedColumnName: 'groupId',
+    },
+    inverseJoinColumn: {
+      name: 'user',
+      referencedColumnName: 'userId',
+    },
+  })
+  user: User[];
 }
