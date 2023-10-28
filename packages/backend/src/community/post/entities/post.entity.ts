@@ -7,7 +7,7 @@ import {
   JoinTable,
   ManyToMany,
 } from 'typeorm';
-import { User } from '../../comment/user/entities/user.entity';
+import { User } from '../../../user/entities/user.entity';
 
 @Entity()
 export class Post {
@@ -33,8 +33,8 @@ export class Post {
   @JoinTable({
     name: 'USER_POST',
     joinColumn: {
-      name: 'commentId',
-      referencedColumnName: 'commentId',
+      name: 'postID',
+      referencedColumnName: 'postID',
     },
     inverseJoinColumn: {
       name: 'userID',
