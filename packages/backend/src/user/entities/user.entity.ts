@@ -1,3 +1,4 @@
+import { Post } from 'src/community/post/entities/post.entity';
 import {
   Column,
   Entity,
@@ -5,12 +6,11 @@ import {
   ManyToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { Post } from '@nestjs/common';
 
 @Entity()
 export class User {
   @PrimaryGeneratedColumn()
-  id: number;
+  userId: number;
 
   @Column()
   username: string;
@@ -18,17 +18,17 @@ export class User {
   @Column()
   password: string;
 
-  @ManyToMany(type => Post)
+  @ManyToMany(() => Post)
   @JoinTable({
     name: 'USER_POST',
     joinColumn: {
-      name: 'userID',
-      referencedColumnName: 'userID',
+      name: 'userId',
+      referencedColumnName: 'userId',
     },
     inverseJoinColumn: {
-      name: 'postID',
-      referencedColumnName: 'postID',
+      name: 'postId',
+      referencedColumnName: 'postId',
     },
   })
-  Post: Post[];
+  post: Post[];
 }
