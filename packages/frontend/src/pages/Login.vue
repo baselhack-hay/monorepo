@@ -36,15 +36,16 @@ const onSubmit = form.handleSubmit((values) => {
 })
 
 const test = () => {
-  axios.post('https://hay-backend-dev.vercel.app/user/login', {
+  axios.post('http://localhost:3000/user/login', {
     username: 'Nadia',
     password: '1234'
   }, {
     headers: {
       'Content-Type': 'application/json'
-    }}).then(response => {
+    },
+  withCredentials: true  }).then(response => {
     console.log(response);
-    axios.get('https://hay-backend-dev.vercel.app/post').then(res => {
+    axios.get('http://localhost:3000/post').then(res => {
       console.log(res)
     })
   }).catch(error => {
