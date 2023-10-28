@@ -47,7 +47,8 @@ module.exports = {
     extend: {
       fontFamily: {
         yeseva: ['Yeseva One', 'serif'],
-        poppins: ['Poppins', 'sans-serif']
+        poppins: ['Poppins', 'sans-serif'],
+        mentra: ['MENTRA', 'sans-serif']
       },
       keyframes: {
         'accordion-down': {

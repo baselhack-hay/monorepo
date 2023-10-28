@@ -15,9 +15,9 @@ watch(router.currentRoute, () => {
 
 <template>
   <header
-    class="font-yeseva shadow-top fixed z-50 w-full rounded-b-2xl border-2 border-white bg-white bg-opacity-70 p-4 text-center backdrop-blur-md"
+    class="shadow-top fixed z-50 w-full rounded-b-2xl border-2 border-white bg-white bg-opacity-70 p-4 text-center backdrop-blur-md"
   >
-    <h1 class="text-6">HAY</h1>
-    <h2 class="text-5">{{ pageName }}</h2>
+    <h1 class="text-6 font-mentra">HAY</h1>
+    <h2 class="font-yeseva text-5">{{ pageName }}</h2>
   </header>
 </template>
