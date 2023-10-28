@@ -16,11 +16,11 @@
 </script>
 <template>
   <div :class="className" class="rounded-lg p-4">
-    <h2 class="text-6">{{props.title}}</h2>
-    <p>{{props.content}}</p>
+    <h2 class="text-6 font-yeseva">{{props.title}}</h2>
+    <p class="font-poppins">{{props.content}}</p>
     <div class="mt-2" v-if="props.numberOfComment!! ">
       <chat-bubble-bottom-center-text-icon class="w-6 inline mr-2 "/>
-      <p class="inline">{{props.numberOfComment}}</p>
+      <p class="inline font-poppins">{{props.numberOfComment}}</p>
     </div>
   </div>
 </template>
