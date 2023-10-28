@@ -6,6 +6,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Post } from '@nestjs/common';
+import {Comment} from "../../entities/comment.entity";
 
 @Entity()
 export class User {
@@ -31,4 +32,18 @@ export class User {
     },
   })
   Post: Post[];
+
+  @ManyToMany(type => Comment)
+  @JoinTable({
+    name: 'USER_COMMENT',
+    joinColumn: {
+      name: 'userID',
+      referencedColumnName: 'userID',
+    },
+    inverseJoinColumn: {
+      name: 'commentId',
+      referencedColumnName: 'CommentId',
+    },
+  })
+  Comment: Comment[];
 }
