@@ -2,6 +2,7 @@
 import Container from './components/Container.vue'
 import Header from './components/ui/header/Header.vue'
 import AppBar from "@/components/ui/app-bar/AppBar.vue";
+
 </script>
 
 <template>
