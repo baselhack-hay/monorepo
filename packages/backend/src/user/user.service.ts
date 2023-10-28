@@ -23,8 +23,10 @@ export class UserService {
     return this.userRepository.findOne({ where: { userId: id } });
   }
 
-  getUser(username: string) {
-    return this.userRepository.findOne({ where: { username } });
+  async getUser(username: string) {
+    const user = await this.userRepository.findOne({ where: { username } });
+    console.log('user: ', user);
+    return user;
   }
 
   async validateUser(username: string, password: string) {
@@ -40,6 +42,7 @@ export class UserService {
 
     return null;
   }
+
   remove(id: number) {
     return this.userRepository.delete(id);
   }

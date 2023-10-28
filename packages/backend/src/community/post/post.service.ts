@@ -15,6 +15,7 @@ export class PostService {
 
   async create(userId: number, createPostDto: CreatePostDto) {
     const user = await this.userService.findById(userId);
+    console.log(user);
 
     const post = new Post();
     post.title = createPostDto.title;
@@ -26,12 +27,19 @@ export class PostService {
     return this.findOne(savedPost.postId);
   }
 
+  findById(id: number) {
+    return this.postRepository.findOne({ where: { postId: id } });
+  }
+
   findAll() {
     return this.postRepository.find();
   }
 
   findOne(id: number) {
-    return this.postRepository.findOne({ where: { postId: id } });
+    return this.postRepository.findOne({
+      where: { postId: id },
+      relations: ['comments', 'comments.user'],
+    });
   }
 
   update(id: number, updatePostDto: UpdatePostDto) {

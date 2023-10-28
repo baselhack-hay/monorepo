@@ -7,6 +7,7 @@ import { UserModule } from './user/user.module';
 import { PostModule } from './community/post/post.module';
 import { QuestionModule } from './question/question.module';
 import { CommentModule } from './community/comment/comment.module';
+import { GroupModule } from './circle/group/group.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { CommentModule } from './community/comment/comment.module';
     PostModule,
     QuestionModule,
     CommentModule,
+    GroupModule,
   ],
   controllers: [AppController],
   providers: [AppService],

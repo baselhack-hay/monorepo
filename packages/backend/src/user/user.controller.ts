@@ -16,7 +16,7 @@ import { AuthenticatedGuard } from './authenticated.guard';
 
 /**
  * Get Current user from session with
- * req.session.passport.user.id
+ * req.session.passport.user.userId;
  */
 
 @Controller('user')
