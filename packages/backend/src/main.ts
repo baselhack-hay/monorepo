@@ -11,9 +11,14 @@ async function bootstrap() {
   app.use(passport.initialize());
   app.use(passport.session());
   app.enableCors({
-    origin: true,
+    origin: [
+      'http://localhost:8080',
+      'https://hay-baselhack-dev.vercel.app',
+      'https://hay-baselhack.vercel.app',
+    ],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
     allowedHeaders: 'Content-Type, Accept',
+    credentials: true,
   });
   await app.listen(3000);
 }
