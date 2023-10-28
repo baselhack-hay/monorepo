@@ -11,13 +11,6 @@ module.exports = {
     './src/**/*.{ts,tsx,vue}'
   ],
   theme: {
-    container: {
-      center: true,
-      padding: '2rem',
-      screens: {
-        '2xl': '1400px'
-      }
-    },
     colors: {
       black: '#111111',
       white: '#FFFFFF',
@@ -37,6 +30,11 @@ module.exports = {
       'angry-light': '#F2C6D8',
       rejecting: '#FDBE5B',
       'rejecting-light': '#F9D2B6'
+    },
+    fontSize: {
+      '4': '1rem',
+      '5': '1.25rem',
+      '6': '1.5rem'
     },
     extend: {
       fontFamily: {
