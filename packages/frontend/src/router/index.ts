@@ -4,6 +4,7 @@ import InnerCircles from '@/pages/InnerCircles.vue'
 import Login from '@/pages/Login.vue'
 import Post from '@/pages/Post.vue'
 import Question from '@/pages/Question.vue'
+import Circle from '@/pages/Circle.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -32,6 +33,11 @@ const router = createRouter({
       path: '/question',
       name: 'Question',
       component: Question
+    },
+    {
+      path: '/circle/:id',
+      name: 'Circle',
+      component: Circle
     }
   ]
 })

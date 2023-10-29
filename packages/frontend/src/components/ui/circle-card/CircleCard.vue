@@ -4,7 +4,7 @@ import router from '@/router'
 
 interface Props {
   groupName: string
-  id: string
+  id: number
 }
 
 defineProps<Props>()
@@ -12,7 +12,7 @@ defineProps<Props>()
 
 <template>
   <div
-    class="flex justify-between rounded-2xl bg-white p-6 font-yeseva text-6 drop-shadow-lg"
+    class="font-yeseva text-6 flex justify-between rounded-2xl bg-white p-6 drop-shadow-lg"
   >
     <span class="flex gap-x-4">
       {{ $props.groupName }}
@@ -20,7 +20,7 @@ defineProps<Props>()
     </span>
     <arrow-right-icon
       class="w-6"
-      @click="router.push('/question')"
+      @click="router.push(`/circle/${id}`)"
     ></arrow-right-icon>
   </div>
 </template>
