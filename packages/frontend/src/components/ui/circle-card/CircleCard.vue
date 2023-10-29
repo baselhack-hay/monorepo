@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import {Cog6ToothIcon, ArrowRightIcon} from '@heroicons/vue/24/outline'
+import router from "@/router";
 
 interface Props {
   groupName: string

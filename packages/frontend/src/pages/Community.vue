@@ -149,7 +149,7 @@ window.onscroll = () => {
           </v-text-field>
         </div>
         <div>
-          <v-textarea v-model="textareaValue" label="Content" />
+          <v-textarea v-model="textareaValue" label="Content" class="font-poppins" />
           <div class="flex w-full flex-row-reverse justify-between">
             <paper-airplane-icon class="w-6" @click="createPost" />
           </div>

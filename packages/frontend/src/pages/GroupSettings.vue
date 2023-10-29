@@ -33,7 +33,7 @@ const inviteUser = async () => {
   try {
     console.log('submitting: ', userName.value, userId.value)
     const result = await axios.patch(
-        `${import.meta.env.VITE_BACKEND_HOST}/circle/group/${userId.value}`,
+        `${import.meta.env.VITE_BACKEND_HOST}/circle/group/${groupId()}`,
         {userIds: [userName.value, userId.value]},
         {
           headers: {
@@ -42,7 +42,6 @@ const inviteUser = async () => {
           withCredentials: true
         }
     )
-    console.log(result)
     return result.data
   } catch (error) {
   }

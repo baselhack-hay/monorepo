@@ -42,7 +42,7 @@ const router = createRouter({
     },
     {
       path: '/group/:id',
-      name: GroupSettings,
+      name: 'GroupSettings',
       component: GroupSettings
     }
   ]

@@ -48,9 +48,7 @@ const postComment = async () => {
     { content: content.value },
     options
   )
-  const input = document.querySelector('#comment') as HTMLInputElement
-  input.value = ''
-  input.innerHTML = ''
+  content.value = '';
   await getPost()
 
   window.scrollTo(0, document.body.scrollHeight)
