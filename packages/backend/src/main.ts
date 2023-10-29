@@ -7,7 +7,12 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.use(
-    session({ secret: 'my-secret', resave: false, saveUninitialized: false }),
+    session({
+      secret: 'my-secret',
+      resave: false,
+      saveUninitialized: false,
+      cookie: { sameSite: 'none' },
+    }),
   );
   app.use(passport.initialize());
   app.use(passport.session());
