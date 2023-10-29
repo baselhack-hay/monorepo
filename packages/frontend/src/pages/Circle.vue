@@ -115,6 +115,7 @@ const getAnswers = async () => {
 }
 
 onMounted(async () => {
+  await getAnswers();
   await getCurrentUser();
   await getChat();
 })
