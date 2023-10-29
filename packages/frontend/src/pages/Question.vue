@@ -3,7 +3,7 @@ import QuestionInput from '@/components/ui/question-input/QuestionInput.vue'
 import QuestionCard from '@/components/ui/question-card/QuestionCard.vue'
 import { onMounted, ref } from 'vue'
 import axios from 'axios'
-import router from "@/router";
+import router from '@/router'
 
 type Question = {
   title: string
@@ -14,14 +14,33 @@ type Question = {
 const question = ref<Question>({ title: '', description: '', id: -1 })
 
 onMounted(async () => {
-  // TODO: make user id dynamic
-  axios.get(`${import.meta.env.VITE_BACKEND_HOST}/circle/answer/user/24/daily`).then((response) => {
-    if (response.data) {
-      router.push('innercircles')
-    }
-  })
+  const userId = await getCurrentUserId()
+  axios
+    .get(
+      `${import.meta.env.VITE_BACKEND_HOST}/circle/answer/user/${userId}/daily`
+    )
+    .then((response) => {
+      if (response.data) {
+        router.push('innercircles')
+      }
+    })
   await getQuestion()
 })
+
+const getCurrentUserId = async () => {
+  try {
+    const result = await axios.get(
+      `${import.meta.env.VITE_BACKEND_HOST}/user/current`,
+      {
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        withCredentials: true
+      }
+    )
+    return result.data
+  } catch (error) {}
+}
 
 const getQuestion = async () => {
   try {
