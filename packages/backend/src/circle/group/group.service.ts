@@ -37,6 +37,10 @@ export class GroupService {
     });
   }
 
+  findById(id: number) {
+    return this.groupRepository.findOne({ where: { groupId: id } });
+  }
+
   findAllByUserId(userId: number) {
     return this.groupRepository.findBy({ users: { userId: userId } });
   }

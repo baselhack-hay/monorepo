@@ -4,8 +4,10 @@ import {
   PrimaryGeneratedColumn,
   ManyToMany,
   JoinTable,
+  OneToMany,
 } from 'typeorm';
 import { User } from '../../../user/entities/user.entity';
+import { Chat } from '../../chat/entities/chat.entity';
 
 @Entity()
 export class Group {
@@ -31,4 +33,7 @@ export class Group {
     },
   })
   users: User[];
+
+  @OneToMany(() => Chat, (chat) => chat.group)
+  chats: Chat[];
 }
