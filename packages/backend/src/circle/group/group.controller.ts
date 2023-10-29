@@ -11,12 +11,17 @@ import {
 import { GroupService } from './group.service';
 import { CreateGroupDto } from './dto/create-group.dto';
 import { UpdateGroupDto } from './dto/update-group.dto';
+import { ApiBody, ApiTags } from '@nestjs/swagger';
 
 @Controller('/circle/group')
+@ApiTags('Group')
 export class GroupController {
   constructor(private readonly groupService: GroupService) {}
 
   @Post()
+  @ApiBody({
+    type: CreateGroupDto,
+  })
   create(@Request() req, @Body() createGroupDto: CreateGroupDto) {
     const userId = req.session.passport.user.userId;
     return this.groupService.create(userId, createGroupDto);

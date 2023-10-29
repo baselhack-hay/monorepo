@@ -9,8 +9,10 @@ import {
 import { CommentService } from './comment.service';
 import { CreateCommentDto } from './dto/create-comment.dto';
 import { AuthenticatedGuard } from '../../user/authenticated.guard';
+import { ApiTags } from '@nestjs/swagger';
 
-@Controller('community/comment')
+@Controller('comment')
+@ApiTags('Comment')
 @UseGuards(AuthenticatedGuard)
 export class CommentController {
   constructor(private readonly commentService: CommentService) {}

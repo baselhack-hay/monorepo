@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import session from 'express-session';
 import passport from 'passport';
+import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -20,6 +21,18 @@ async function bootstrap() {
     allowedHeaders: 'Content-Type, Accept',
     credentials: true,
   });
+
+  const options = new DocumentBuilder()
+    .setTitle('HAY PI')
+    .setDescription('HAY API documentation')
+    .setVersion('1.0')
+    .addServer('http://localhost:3000/', 'Local environment')
+    .addServer('https://hay-backend-dev.vercel.app', 'Develpment')
+    .addServer('https://hay-backend.vercel.app/', 'Production')
+    .build();
+
+  const document = SwaggerModule.createDocument(app, options);
+  SwaggerModule.setup('/', app, document);
   await app.listen(3000);
 }
 bootstrap();

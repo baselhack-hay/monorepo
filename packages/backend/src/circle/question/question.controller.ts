@@ -10,12 +10,17 @@ import {
 import { QuestionService } from './question.service';
 import { CreateQuestionDto } from './dto/create-question.dto';
 import { UpdateQuestionDto } from './dto/update-question.dto';
+import { ApiBody, ApiTags } from '@nestjs/swagger';
 
 @Controller('/circle/question')
+@ApiTags('Circle')
 export class QuestionController {
   constructor(private readonly questionService: QuestionService) {}
 
   @Post()
+  @ApiBody({
+    type: CreateQuestionDto,
+  })
   create(@Body() createQuestionDto: CreateQuestionDto) {
     return this.questionService.create(createQuestionDto);
   }

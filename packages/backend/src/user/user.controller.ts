@@ -13,6 +13,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import * as bcrypt from 'bcrypt';
 import { LocalAuthGuard } from './local.auth.guard';
 import { AuthenticatedGuard } from './authenticated.guard';
+import { ApiBody, ApiTags } from '@nestjs/swagger';
 
 /**
  * Get Current user from session with
@@ -20,10 +21,14 @@ import { AuthenticatedGuard } from './authenticated.guard';
  */
 
 @Controller('user')
+@ApiTags('User')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Post('/signup')
+  @ApiBody({
+    type: CreateUserDto,
+  })
   async signUp(@Body() createUserDto: CreateUserDto) {
     const saltOrRounds = 10;
     const hashedPassword = await bcrypt.hash(
@@ -37,6 +42,9 @@ export class UserController {
 
   @UseGuards(LocalAuthGuard)
   @Post('/login')
+  @ApiBody({
+    type: CreateUserDto,
+  })
   login(@Request() req): any {
     return { msg: `User ${req.user.username} successfully signed in!` };
   }
