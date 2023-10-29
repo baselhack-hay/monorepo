@@ -1,0 +1,14 @@
+{
+  "rewrites": [
+    { "source": "/api/", "destination": "https://hay-backend.vercel.app/" },
+    {
+      "source": "/api/:match*",
+      "destination": "https://hay-backend.vercel.app/:match*"
+    },
+    { "source": "/", "destination": "https://hay-baselhack.vercel.app" },
+    {
+      "source": "/:match*",
+      "destination": "https://hay-baselhack.vercel.app/:match*"
+    }
+  ]
+}

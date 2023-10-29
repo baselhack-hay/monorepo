@@ -14,7 +14,14 @@ type Answer = {
   username: string
   answerId: number
   answer: string
-  emotion: string
+  emotion:
+    | 'surprised'
+    | 'happy'
+    | 'scared'
+    | 'sad'
+    | 'angry'
+    | 'rejecting'
+    | undefined
 }
 
 const answers = ref<Answer[]>([])
@@ -92,10 +99,10 @@ const getAnswers = async () => {
       )
       answers.value.push({
         userId: result.data.userId,
-        username: result.data.user.username,
+        username: user.username,
         answer: result.data.answer,
         answerId: result.data.answerId,
-        emotion: 'angry'
+        emotion: result.data.emotion
       })
     }
   } catch (error) {}
@@ -132,7 +139,7 @@ const getCircle = async () => {
       <CommunityCard
         v-for="answer in answers"
         :id="answer.answerId"
-        :title="answer.username + 's Answer'"
+        :title="answer.username + '\'s Answer'"
         :content="answer.answer"
         :variant="answer.emotion"
       ></CommunityCard>
