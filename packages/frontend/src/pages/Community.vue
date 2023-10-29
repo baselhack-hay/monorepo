@@ -24,7 +24,7 @@ onMounted(async () => {
 const createPost = async () => {
   if(titleValue.value.length > 0 && textareaValue.value.length > 0){
     try {
-      await axios.post('http://localhost:3000/post', {
+      await axios.post(`${import.meta.env.VITE_BACKEND_HOST}/community/post`, {
         title: titleValue.value,
         description: textareaValue.value
       }, {
@@ -46,7 +46,7 @@ const createPost = async () => {
 
 const getAllPosts = async () => {
   try {
-    const result = await axios.get('http://localhost:3000/post', {
+    const result = await axios.get(`${import.meta.env.VITE_BACKEND_HOST}/community/post`, {
       headers: {
         'Content-Type': 'application/json'
       },
