@@ -31,6 +31,8 @@ const signIn = () => {
 const isSignUp = ref(false);
 const loginFailed = ref(false);
 const submit = () => {
+  console.log('backend host:', import.meta.env.VITE_BACKEND_HOST);
+  console.log('complete url', import.meta.env.VITE_BACKEND_HOST + `/user/${isSignUp.value ? 'signup' : 'login'}`)
   if (!isSignUp.value || confirmedPassword.value) {
     axios.post(import.meta.env.VITE_BACKEND_HOST + `/user/${isSignUp.value ? 'signup' : 'login'}`, {
       username: username.value,
