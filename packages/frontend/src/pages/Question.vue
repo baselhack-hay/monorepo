@@ -33,7 +33,7 @@ const getQuestion = async () => {
 </script>
 
 <template>
-  <div class="inlay">
+  <div class="inlay bg-cover bg-no-repeat">
     <QuestionCard
       :title="question.title"
       :description="question.description"

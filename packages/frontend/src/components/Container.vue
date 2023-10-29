@@ -9,7 +9,7 @@ watch(router.currentRoute, () => {
   const isCircles =
     router.currentRoute.value.path == '/innercircles' ||
     router.currentRoute.value.path == '/question'
-  bgColor.value = isCircles ? '' : 'white'
+  bgColor.value = isCircles ? 'colorful' : 'white'
 })
 </script>
 
