@@ -4,6 +4,6 @@ import QuestionCard from '@/components/ui/question-card/QuestionCard.vue'
 </script>
 
 <template>
-  <QuestionCard class="mt-4"></QuestionCard>
+  <QuestionCard class="m-auto mt-4 w-11/12"></QuestionCard>
   <QuestionInput></QuestionInput>
 </template>
