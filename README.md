@@ -1,5 +1,5 @@
 # Hay (How are you?)
-[https://baselhack-proxy.vercel.app]
+https://baselhack-proxy.vercel.app
 
 ## Basic Structure
 
