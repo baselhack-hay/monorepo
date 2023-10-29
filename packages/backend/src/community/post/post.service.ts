@@ -53,6 +53,14 @@ export class PostService {
   async paginatePosts(page: number, pageSize: number, timestamp: Date | null) {
     const query = this.postRepository
       .createQueryBuilder('post')
+      .select([
+        'post.postId',
+        'post.title',
+        'post.description',
+        'post.emotion',
+        'post.createdAt',
+        'post.updatedAt',
+      ])
       .orderBy('post.createdAt', 'DESC');
 
     if (timestamp) {
@@ -64,6 +72,28 @@ export class PostService {
       .take(pageSize)
       .getManyAndCount();
 
-    return { posts, total };
+    // Get the comment count for each post
+    const postIds = posts.map((post) => post.postId);
+    const commentCounts = await this.postRepository
+      .createQueryBuilder('post')
+      .select('post.postId', 'postId')
+      .addSelect('COUNT(comment.commentId)', 'commentCount')
+      .leftJoin('post.comments', 'comment')
+      .groupBy('post.postId')
+      .whereInIds(postIds)
+      .getRawMany();
+
+    // Create a map with the countent comments
+    const commentCountMap = new Map(
+      commentCounts.map((item) => [item.postId, item.commentCount]),
+    );
+
+    // Combine the posts with their comment counts
+    const formattedPosts = posts.map((post) => ({
+      ...post,
+      commentCount: commentCountMap.get(post.postId) || 0,
+    }));
+
+    return { posts: formattedPosts, total };
   }
 }
