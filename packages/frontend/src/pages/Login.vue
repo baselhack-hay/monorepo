@@ -10,7 +10,8 @@ const password = ref(null);
 const confirmedPassword = ref(null);
 const rules = ref(
     [
-      value => value === password.value || 'Passwords must be equal',])
+      (value: string) => value === password.value || 'Passwords must be equal',]
+)
 
 const signIn = () => {
   axios.post(import.meta.env.VITE_BACKEND_HOST + '/user/login', {
