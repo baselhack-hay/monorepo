@@ -32,6 +32,7 @@ const generateTimestamp = () => {
 }
 
 const emotion = ref<string>('')
+const error = ref<string>('')
 
 onMounted(async () => {
   generateTimestamp()
@@ -39,6 +40,10 @@ onMounted(async () => {
 })
 
 const createPost = async () => {
+  if (emotion.value == '') {
+    error.value = 'Please choose an emotion'
+    return
+  }
   if (titleValue.value.length > 0 && textareaValue.value.length > 0) {
     try {
       await axios.post(
@@ -60,6 +65,7 @@ const createPost = async () => {
       titleValue.value = ''
       textareaValue.value = ''
       pageIndex.value = 1
+      error.value = ''
       generateTimestamp()
       await getPosts()
       dialog.value = false
@@ -146,6 +152,9 @@ window.onscroll = () => {
           <div class="flex w-full flex-row-reverse justify-between">
             <paper-airplane-icon class="w-6" @click="createPost" />
           </div>
+        </div>
+        <div v-if="error" class="bg-sad-light font-poppins w-fit rounded p-2">
+          {{ error }}
         </div>
       </div>
     </v-dialog>

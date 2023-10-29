@@ -6,8 +6,13 @@ import EmotionSelector from '@/components/ui/emotion-selector/EmotionSelector.vu
 
 const textareaValue = ref('')
 const emotion = ref<string>('')
+const error = ref<string>('')
 
 const postAnswer = async () => {
+  if (emotion.value == '') {
+    error.value = 'Please choose an emotion'
+    return
+  }
   if (textareaValue.value.length > 0) {
     try {
       await axios.post(
@@ -78,6 +83,12 @@ const getCurrentUserId = async () => {
           />
         </svg>
       </button>
+    </div>
+    <div
+      v-if="error"
+      class="font-poppins mt-20 w-fit rounded bg-scared p-2 drop-shadow"
+    >
+      {{ error }}
     </div>
   </div>
 </template>
