@@ -5,7 +5,6 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
-  JoinColumn,
 } from 'typeorm';
 import { User } from '../../../user/entities/user.entity';
 import { Post } from '../../post/entities/post.entity';
@@ -18,9 +17,6 @@ export class Comment {
   @Column({ length: 512 })
   content: string;
 
-  @Column()
-  postId: number;
-
   @CreateDateColumn()
   createdAt: Date;
 
@@ -32,8 +28,4 @@ export class Comment {
 
   @ManyToOne(() => Post, (post) => post.comments)
   post: Post;
-
-  @ManyToOne((type) => Post)
-  @JoinColumn([{ name: 'postId', referencedColumnName: 'postId' }])
-  Post: Post;
 }
