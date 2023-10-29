@@ -13,7 +13,7 @@ type Answer = {
   username: string
   answerId: number
   answer: string
-  emotion: string
+  emotion: 'surprised' | 'happy' | 'scared' | 'sad' | 'angry' | 'rejecting' | undefined;
 }
 
 const answers = ref<Answer[]>([])
