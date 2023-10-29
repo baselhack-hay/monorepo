@@ -1,0 +1,23 @@
+{
+  "version": 2,
+  "scope": "my_own_vercel_scope",
+  "github": {
+    "enabled": false
+  },
+  "installCommand": "npm i",
+  "buildCommand": "npm run build -w=packages/frontend && npm run build -w=packages/backend",
+  "builds": [
+    {
+      "src": "/dist/packages/backend/main.ts",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "/dist/packages/frontend/*",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    { "src": "/api/(.*)", "dest": "/dist/packages/backend/main.ts" },
+    { "handle": "filesystem" }
+  ]
+}
