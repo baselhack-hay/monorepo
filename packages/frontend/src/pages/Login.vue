@@ -90,6 +90,11 @@ const submit = () => {
                     class="text-[14px] text-uppercase font-bold text-center text-amber-darken-3 w-full mt-4">
               sign up here
             </button>
+            <button @click="isSignUp = false"
+                    v-if="isSignUp"
+                    class="text-[14px] text-uppercase font-bold text-center text-amber-darken-3 w-full mt-4">
+              login
+            </button>
           </div>
         </div>
         <Button type="submit" variant="outline"

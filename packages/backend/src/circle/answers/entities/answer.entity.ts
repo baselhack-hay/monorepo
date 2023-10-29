@@ -14,7 +14,7 @@ export class Answer {
   answerId: number;
 
   @Column({ length: 512 })
-  content: string;
+  answer: string;
 
   @CreateDateColumn()
   createdAt: Date;
@@ -25,7 +25,7 @@ export class Answer {
   @Column()
   userId: number;
 
-  @OneToOne((type) => User)
+  @OneToOne(() => User)
   @JoinColumn([{ name: 'userId', referencedColumnName: 'userId' }])
-  User: User;
+  user: User;
 }
