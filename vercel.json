@@ -5,8 +5,7 @@
     "enabled": false
   },
   "installCommand": "npm i",
-
-  "buildCommand": "cd packages/frontend && npm run build && cd ../backend && npm run build",
+  "buildCommand": "ls && pwd && cd packages/frontend && npm run build && cd ../backend && npm run build",
   "builds": [
     {
       "src": "/dist/packages/backend/main.ts",
