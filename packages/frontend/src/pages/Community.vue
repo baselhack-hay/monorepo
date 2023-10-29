@@ -1,41 +1,68 @@
 <script setup lang="ts">
 import CommunityCard from "@/components/ui/communityCard/CommunityCard.vue";
 import {PlusIcon, XMarkIcon, PaperAirplaneIcon} from "@heroicons/vue/24/outline";
-import {ref} from "vue";
+import {onMounted, ref} from "vue";
 import router from '@/router'
+import axios from "axios";
+
+type Post = {
+  postId: number;
+  title: string;
+  description: string;
+  emotion: 'surprised' | 'happy' | 'scared' | 'sad' | 'angry' | 'rejecting';
+}
 
 const dialog = ref(false);
 const textareaValue = ref('');
 const titleValue = ref('');
-const send = () => {
-  console.log(textareaValue.value);
-  console.log(titleValue.value);
+const posts = ref<Post[]>([]);
+
+onMounted(async () => {
+  await getAllPosts();
+});
+
+const createPost = async () => {
+  if(titleValue.value.length > 0 && textareaValue.value.length > 0){
+    try {
+      await axios.post('http://localhost:3000/post', {
+        title: titleValue.value,
+        description: textareaValue.value
+      }, {
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      withCredentials: true
+      })
+      await getAllPosts();
+      titleValue.value = '';
+      textareaValue.value = '';
+      dialog.value = false;
+    }
+    catch (error){
+      console.log(error)
+    }
+  }
 }
+
+const getAllPosts = async () => {
+  try {
+    const result = await axios.get('http://localhost:3000/post', {
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      withCredentials: true
+    })
+    posts.value = result.data.reverse();
+  } catch (error){
+  }
+}
+
 </script>
 
 <template>
   <main>
     <div class="inlay flex flex-col gap-y-6">
-      <CommunityCard
-        @click="router.push('/posts/1')"
-        :number-of-comment="20"
-        title="Title"
-        variant="surprised"
-        content="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy sed diam nonumy..."
-      />
-      <CommunityCard
-        @click="router.push('/posts/2')"
-        title="Title"
-        variant="sad"
-        content="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy sed diam nonumy..."
-      />
-      <CommunityCard
-        @click="router.push('/posts/3')"
-        :number-of-comment="25"
-        title="Title"
-        variant="surprised"
-        content="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy sed diam nonumy..."
-      />
+      <CommunityCard v-for="post in posts" @click="router.push(`/posts/${post.postId}`)" :id="post.postId" :title="post.title" :content="post.description" :variant="post.emotion"></CommunityCard>
     </div>
     <div class=" fixed bottom-20 w-full flex flex-row-reverse px-6">
       <div class="rounded-xl bg-black p-3 text-center" v-if="!dialog">
@@ -54,7 +81,7 @@ const send = () => {
         <div>
           <v-textarea v-model="textareaValue" label="Content"/>
           <div class="w-full flex justify-between flex-row-reverse">
-            <paper-airplane-icon class="w-6" @click="send"/>
+            <paper-airplane-icon class="w-6" @click="createPost"/>
           </div>
         </div>
       </div>

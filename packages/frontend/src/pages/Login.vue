@@ -13,7 +13,12 @@ const test = () => {
     },
   withCredentials: true  }).then(response => {
     console.log(response);
-    axios.get('http://localhost:3000/post').then(res => {
+    axios.get('http://localhost:3000/post', {
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      withCredentials: true
+    }).then(res => {
       console.log(res)
     })
   }).catch(error => {
