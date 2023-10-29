@@ -27,7 +27,7 @@ const loading = ref(false)
 
 const generateTimestamp = () => {
   const currentDate = new Date()
-  currentDate.setHours(currentDate.getHours() - 1)
+  currentDate.setHours(currentDate.getHours())
   timestamp.value = currentDate.toISOString()
 }
 
