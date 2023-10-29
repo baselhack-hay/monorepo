@@ -9,6 +9,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Group } from '../../circle/group/entities/group.entity';
+import { Chat } from '../../circle/chat/entities/chat.entity';
 
 @Entity()
 export class User {
@@ -26,6 +27,9 @@ export class User {
 
   @OneToMany(() => Comment, (comment) => comment.user)
   comments: Comment[];
+
+  @OneToMany(() => Chat, (chat) => chat.user)
+  chats: Chat[];
 
   @ManyToMany(() => Group)
   @JoinTable({
