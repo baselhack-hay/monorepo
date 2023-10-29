@@ -71,7 +71,6 @@ const getAllPosts = async () => {
     </div>
     <v-dialog
         v-model="dialog"
-        width="auto"
     >
       <div class="flex bg-white rounded-lg p-4 flex-column gap-y-4">
         <div class="w-full flex justify-between">

@@ -69,6 +69,7 @@ const submit = () => {
             </div>
             <div>
               <v-text-field v-model="password" variant="underlined" type="password" placeholder="Password"
+                            @keydown.enter="submit"
                             class="font-poppins"/>
             </div>
             <v-alert
