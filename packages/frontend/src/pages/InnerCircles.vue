@@ -89,7 +89,7 @@ const createCircle = async () => {
         v-else
         class="font-yeseva text-5 rounded-2xl bg-white p-4 drop-shadow-lg"
       >
-        Trete einem Circle bei oder erstelle einen neuen.
+        Join a Circle or create a new one.
       </div>
       <div class="fixed bottom-20 right-6 flex flex-row-reverse">
         <div class="rounded-xl bg-black p-3 text-center" v-if="!dialog">
@@ -104,7 +104,7 @@ const createCircle = async () => {
           <v-text-field v-model="nameValue" label="Name" class="font-poppins" />
           <div class="font-poppins flex gap-x-4" @click="createCircle">
             <plus-icon class="w-6" />
-            Circle erstellen
+            create Circle
           </div>
         </div>
       </v-dialog>

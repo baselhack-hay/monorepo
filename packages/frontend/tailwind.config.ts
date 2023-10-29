@@ -9,7 +9,8 @@ module.exports = {
     'bg-scared-light',
     'bg-sad-light',
     'bg-angry-light',
-    'bg-rejecting-light'
+    'bg-rejecting-light',
+    'bg-colorful'
   ],
   darkMode: ['class'],
   content: [
@@ -66,6 +67,9 @@ module.exports = {
       },
       boxShadow: {
         top: '0px 0px 15px 5px rgba(0, 0, 0, 0.3)'
+      },
+      backgroundImage: {
+        colorful: 'url(../../public/colorful-background.svg)'
       }
     }
   },
