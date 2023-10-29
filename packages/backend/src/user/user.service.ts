@@ -31,11 +31,12 @@ export class UserService {
 
   async validateUser(username: string, password: string) {
     const user = await this.getUser(username);
+    console.log('uswer server found this user, ', user);
     if (!user) {
       throw new NotAcceptableException('user could not be found!');
     }
     const isPasswordValid = await bcrypt.compare(password, user.password);
-
+    console.log(isPasswordValid);
     if (isPasswordValid) {
       return user;
     }
