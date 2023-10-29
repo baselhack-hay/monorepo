@@ -3,10 +3,11 @@ import { computed } from 'vue'
 import { ChatBubbleBottomCenterTextIcon } from '@heroicons/vue/24/outline'
 
 interface Props {
-  title: string
-  content: string
-  variant: 'surprised' | 'happy' | 'scared' | 'sad' | 'angry' | 'rejecting'
-  numberOfComment?: number
+  id?: number;
+  title: string;
+  content: string;
+  variant?: 'surprised' | 'happy' | 'scared' | 'sad' | 'angry' | 'rejecting';
+  numberOfComment?: number;
 }
 
 const props = defineProps<Props>()
