@@ -5,6 +5,7 @@ import Login from '@/pages/Login.vue'
 import Post from '@/pages/Post.vue'
 import Question from '@/pages/Question.vue'
 import Circle from '@/pages/Circle.vue'
+import GroupSettings from "@/pages/GroupSettings.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -38,6 +39,11 @@ const router = createRouter({
       path: '/circle/:id',
       name: 'Circle',
       component: Circle
+    },
+    {
+      path: '/group/:id',
+      name: GroupSettings,
+      component: GroupSettings
     }
   ]
 })
