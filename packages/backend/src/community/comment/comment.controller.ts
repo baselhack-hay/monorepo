@@ -11,7 +11,7 @@ import { CreateCommentDto } from './dto/create-comment.dto';
 import { AuthenticatedGuard } from '../../user/authenticated.guard';
 import { ApiTags } from '@nestjs/swagger';
 
-@Controller('comment')
+@Controller('/community/comment')
 @ApiTags('Comment')
 @UseGuards(AuthenticatedGuard)
 export class CommentController {
