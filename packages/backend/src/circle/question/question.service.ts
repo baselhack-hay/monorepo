@@ -25,7 +25,7 @@ export class QuestionService {
   }
 
   findDaily() {
-    return this.questionRepository.findOneBy({ questionId: 1 });
+    return this.questionRepository.findOneBy({ questionId: 7 });
   }
 
   async update(id: number, updateQuestionDto: UpdateQuestionDto) {
