@@ -17,6 +17,8 @@ const dialog = ref(false)
 const nameValue = ref('')
 const circles = ref<Circle[]>([])
 
+const loading = ref(false)
+
 const getAllCirclesOfUsers = async () => {
   try {
     const userId = await getCurrentUserId()
@@ -51,6 +53,7 @@ const getCurrentUserId = async () => {
 const createCircle = async () => {
   if (nameValue.value.length > 0) {
     try {
+      loading.value = true
       await axios.post(
         `${import.meta.env.VITE_BACKEND_HOST}/circle/group`,
         {
@@ -66,6 +69,7 @@ const createCircle = async () => {
         }
       )
       await getAllCirclesOfUsers()
+      loading.value = false
       nameValue.value = ''
       dialog.value = false
     } catch (error) {
@@ -87,7 +91,7 @@ const createCircle = async () => {
       </div>
       <div
         v-else
-        class="font-poppins text-5 rounded-2xl bg-white p-4 drop-shadow-lg"
+        class="rounded-2xl bg-white p-4 font-poppins text-5 drop-shadow-lg"
       >
         Join a Circle or create a new one.
       </div>
@@ -102,7 +106,7 @@ const createCircle = async () => {
             <x-mark-icon class="w-6" @click="dialog = false" />
           </div>
           <v-text-field v-model="nameValue" label="Name" class="font-poppins" />
-          <div class="font-poppins flex gap-x-4" @click="createCircle">
+          <div class="flex gap-x-4 font-poppins" @click="createCircle">
             <plus-icon class="w-6" />
             create Circle
           </div>
