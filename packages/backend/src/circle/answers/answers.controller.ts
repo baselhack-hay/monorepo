@@ -10,8 +10,10 @@ import {
 import { AnswersService } from './answers.service';
 import { CreateAnswerDto } from './dto/create-answer.dto';
 import { UpdateAnswerDto } from './dto/update-answer.dto';
+import { ApiTags } from '@nestjs/swagger';
 
 @Controller('/circle/answer')
+@ApiTags('Answer')
 export class AnswersController {
   constructor(private readonly answersService: AnswersService) {}
 
