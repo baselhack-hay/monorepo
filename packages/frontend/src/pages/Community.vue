@@ -20,6 +20,7 @@ const posts = ref<Post[]>([]);
 const pageIndex = ref(1);
 const timestamp = ref('');
 const end = ref(false);
+const loading = ref(false);
 
 const generateTimestamp = () => {
   const currentDate = new Date();
@@ -65,12 +66,14 @@ const createPost = async () => {
 const getPosts = async () => {
   if(!end.value){
     try {
+      loading.value = true;
       const result = await axios.get(`${import.meta.env.VITE_BACKEND_HOST}/community/post/paginate?page=${pageIndex.value}&timestamp=${timestamp.value}&pageSize=10`, {
         headers: {
           'Content-Type': 'application/json'
         },
         withCredentials: true
       })
+      loading.value = false;
       posts.value = [...posts.value, ...result.data.posts]
       if(result.data.posts.length === 0){
         end.value = true;
@@ -95,6 +98,7 @@ window.onscroll = () => {
   <main>
     <div class="inlay flex flex-col gap-y-6" id="scrollwindow">
       <CommunityCard v-for="post in posts" @click="router.push(`/posts/${post.postId}`)" :id="post.postId" :title="post.title" :content="post.description" :variant="post.emotion"></CommunityCard>
+      <span v-if="loading">Loading...</span>
     </div>
     <div class=" fixed bottom-20 w-full flex flex-row-reverse px-6">
       <div class="rounded-xl bg-black p-3 text-center" v-if="!dialog">
