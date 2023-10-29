@@ -71,7 +71,7 @@ onMounted(async () => {
         :content="response.description"
       />
       <div
-        class="w-full rounded-lg py-2 pl-4 shadow-md"
+        class="w-full rounded-lg py-2 pl-4 font-poppins shadow-md"
         v-if="response"
         v-for="comment in response.comments"
       >
