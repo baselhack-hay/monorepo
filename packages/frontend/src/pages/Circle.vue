@@ -21,8 +21,12 @@ const answers = ref<Answer[]>([])
 const messages = ref<{username: string, message: string, userId: number}[]>([]);
 const currentInputValue = ref('')
 const userId = ref<number>(0)
+const interval = setInterval(() => {
+  getChat()
+}, 2000);
 
 const sendMessage = async (message: string) => {
+  if(message === '') return
   axios.post(`${import.meta.env.VITE_BACKEND_HOST}/circle/chat/${groupId}`,
       {
         message
@@ -34,6 +38,7 @@ const sendMessage = async (message: string) => {
         withCredentials: true
       }
   )
+  currentInputValue.value = '';
 }
 
 const getCurrentUser = async () =>{
@@ -66,7 +71,6 @@ const getChat = async () => {
       userId: message.user.userId
     }
   })
-  console.log("chat", messages.value);
 }
 
 const getAnswers = async () => {
@@ -98,11 +102,11 @@ const getAnswers = async () => {
 }
 
 onMounted(async () => {
-  await sendMessage("hello there")
   await getCurrentUser();
-  setInterval(() => {
-    getChat()
-  }, 2000)
+})
+
+onUnmounted(() => {
+  clearInterval(interval)
 })
 
 
@@ -144,7 +148,6 @@ const getCircle = async () => {
       </div>
       <v-text-field v-model="currentInputValue"></v-text-field>
       <paper-airplane-icon @click="sendMessage(currentInputValue)" class="w-6"/>
-
     </div>
   </main>
 </template>
