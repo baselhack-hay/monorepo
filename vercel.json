@@ -5,6 +5,7 @@
     "enabled": false
   },
   "installCommand": "npm i",
+
   "buildCommand": "npm run build -w=packages/frontend && npm run build -w=packages/backend",
   "builds": [
     {
