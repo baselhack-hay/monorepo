@@ -8,6 +8,7 @@ import {
   Delete,
   Request,
   UseGuards,
+  Query,
 } from '@nestjs/common';
 import { PostService } from './post.service';
 import { CreatePostDto } from './dto/create-post.dto';
@@ -24,6 +25,18 @@ export class PostController {
     const userId = req.session.passport.user.userId;
     console.log('add post for user: ', req);
     return this.postService.create(userId, createPostDto);
+  }
+
+  @Get('paginate')
+  async paginatePosts(
+    @Query('page') page: number,
+    @Query('pageSize') pageSize: number,
+    @Query('timestamp') timestamp: string,
+  ) {
+    const date = timestamp ? new Date(timestamp) : null;
+    const result = await this.postService.paginatePosts(page, pageSize, date);
+
+    return result;
   }
 
   @Get()
