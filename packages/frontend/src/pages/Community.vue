@@ -103,7 +103,6 @@ window.onscroll = () => {
     </div>
     <v-dialog
         v-model="dialog"
-        width="auto"
     >
       <div class="flex bg-white rounded-lg p-4 flex-column gap-y-4">
         <div class="w-full flex justify-between">
@@ -115,7 +114,6 @@ window.onscroll = () => {
               <EmotionSelector @select-emotion="(e: any) => emotion = e.title"></EmotionSelector>
             </template>
           </v-text-field>
-
         </div>
         <div>
           <v-textarea v-model="textareaValue" label="Content"/>
