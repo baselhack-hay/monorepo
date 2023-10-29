@@ -1,3 +1,11 @@
 .inlay {
     @apply px-6 py-8;
 }
+
+.active-nav-community {
+    @apply rounded-full bg-primary-community-light drop-shadow;
+}
+
+.active-nav-circles {
+    @apply rounded-full bg-primary-circles-light drop-shadow;
+}

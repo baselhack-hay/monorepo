@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import CircleCard from '@/components/ui/circle-card/CircleCard.vue'
-import QuestionCard from '@/components/ui/question-card/QuestionCard.vue'
 </script>
 
 <template>
@@ -9,7 +8,6 @@ import QuestionCard from '@/components/ui/question-card/QuestionCard.vue'
       <CircleCard id="1" group-name="Friends"></CircleCard>
       <CircleCard id="2" group-name="Family"></CircleCard>
       <CircleCard id="3" group-name="Nadia"></CircleCard>
-      <QuestionCard></QuestionCard>
     </div>
   </main>
 </template>
