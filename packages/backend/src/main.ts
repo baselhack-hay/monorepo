@@ -11,13 +11,6 @@ async function bootstrap() {
       secret: 'my-secret',
       resave: false,
       saveUninitialized: false,
-      cookie: {
-        sameSite: 'strict',
-        // secure: true,
-        httpOnly: false,
-        maxAge: 60000,
-        domain: 'hay-baselhack-dev.vercel.app',
-      },
     }),
   );
   app.use(passport.initialize());
