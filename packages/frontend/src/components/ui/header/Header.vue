@@ -54,7 +54,7 @@ const logout = () => {
     </div>
     <div class="w-3/5">
       <h1 class="text-6 font-mentra">HAY</h1>
-      <h2 class="font-yeseva text-5">{{ pageName }}</h2>
+      <h2 class="font-yeseva text-5">{{ router.currentRoute.value.fullPath.startsWith('/group')  ? 'Group' : pageName }}</h2>
     </div>
     <div class="align-center flex w-1/5 justify-center" @click="logout">
       <arrow-left-on-rectangle-icon class="w-6"></arrow-left-on-rectangle-icon>
