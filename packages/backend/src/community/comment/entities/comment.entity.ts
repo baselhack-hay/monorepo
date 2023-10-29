@@ -18,7 +18,7 @@ export class Comment {
   @Column({ length: 512 })
   content: string;
 
-  @Column({ default: 0 })
+  @Column()
   postId: number;
 
   @CreateDateColumn()
