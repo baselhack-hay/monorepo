@@ -16,7 +16,7 @@ async function bootstrap() {
         // secure: true,
         httpOnly: false,
         maxAge: 60000,
-        domain: '.vercel.app',
+        domain: 'vercel.app',
       },
     }),
   );
