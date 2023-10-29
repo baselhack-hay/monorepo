@@ -3,7 +3,7 @@ import {
   CreateDateColumn,
   Entity,
   JoinColumn,
-  OneToOne,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -25,7 +25,7 @@ export class Answer {
   @Column()
   userId: number;
 
-  @OneToOne(() => User)
+  @ManyToOne(() => User)
   @JoinColumn([{ name: 'userId', referencedColumnName: 'userId' }])
   user: User;
 }
