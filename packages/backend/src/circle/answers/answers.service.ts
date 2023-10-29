@@ -20,6 +20,7 @@ export class AnswersService {
     const answer = new Answer();
     answer.answer = createAnswerDto.answer;
     answer.user = user;
+    answer.emotion = createAnswerDto.emotion;
 
     return this.answerRepository.save(answer);
   }
