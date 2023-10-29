@@ -4,6 +4,7 @@ import {PlusIcon, XMarkIcon, PaperAirplaneIcon} from "@heroicons/vue/24/outline"
 import {onMounted, ref} from "vue";
 import router from '@/router'
 import axios from "axios";
+import EmotionSelector from "@/components/ui/emotion-selector/EmotionSelector.vue";
 
 type Post = {
   postId: number;
@@ -26,6 +27,7 @@ const generateTimestamp = () => {
   timestamp.value = currentDate.toISOString();
 }
 
+const emotion = ref<string>('');
 
 onMounted(async () => {
   generateTimestamp();
@@ -37,7 +39,8 @@ const createPost = async () => {
     try {
       await axios.post(`${import.meta.env.VITE_BACKEND_HOST}/community/post`, {
         title: titleValue.value,
-        description: textareaValue.value
+        description: textareaValue.value,
+        emotion: emotion.value.toLowerCase()
       }, {
       headers: {
           'Content-Type': 'application/json'
@@ -100,13 +103,18 @@ window.onscroll = () => {
     </div>
     <v-dialog
         v-model="dialog"
-        width="auto"
     >
       <div class="flex bg-white rounded-lg p-4 flex-column gap-y-4">
         <div class="w-full flex justify-between">
           <x-mark-icon class="w-6" @click="dialog = false"/>
         </div>
-        <v-text-field v-model="titleValue" label="Title" class="font-poppins"/>
+        <div class="flex">
+          <v-text-field v-model="titleValue" label="Title" class="font-poppins">
+            <template v-slot:append-inner>
+              <EmotionSelector @select-emotion="(e: any) => emotion = e.title"></EmotionSelector>
+            </template>
+          </v-text-field>
+        </div>
         <div>
           <v-textarea v-model="textareaValue" label="Content"/>
           <div class="w-full flex justify-between flex-row-reverse">
