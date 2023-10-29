@@ -27,6 +27,8 @@ export class User {
   @OneToMany(() => Comment, (comment) => comment.user)
   comments: Comment[];
 
+
+
   @ManyToMany((type) => Group)
   @JoinTable({
     name: 'GROUP_USER',
