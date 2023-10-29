@@ -32,6 +32,18 @@ export class AnswersService {
     return this.answerRepository.findOneBy({ answerId: id });
   }
 
+  async findDailyQuestionByUserId(userId: number) {
+    const questions = await this.answerRepository.findBy({ userId: userId });
+    const today = new Date().getUTCDate();
+
+    const dailyQuestion = questions.find((question) => {
+      const day = new Date(question.createdAt).getUTCDate();
+      return day >= today;
+    });
+
+    return dailyQuestion;
+  }
+
   async update(id: number, updateAnswerDto: UpdateAnswerDto) {
     const currentAnswer = await this.findOne(id);
 

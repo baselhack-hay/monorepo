@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import router from '@/router'
 
 const mood = ref('')
 const color = ref('')
 
-const items: {title: string, color: string}[] = [
+const items: { title: string; color: string }[] = [
   {
     title: 'Happy',
     color: 'bg-happy'
@@ -40,7 +41,7 @@ function setMood(selectedMood: string, selectedColor: string) {
 <template>
   <div class="flex h-fit w-full justify-center">
     <div
-      class="fixed bottom-0 mx-auto mb-[100px] flex h-fit w-11/12 justify-between rounded-full bg-white p-4 font-poppins shadow-[0_3px_10px_rgb(0,0,0,0.2)]"
+      class="font-poppins fixed bottom-0 mx-auto mb-[100px] flex h-fit w-11/12 justify-between rounded-full bg-white p-4 shadow-[0_3px_10px_rgb(0,0,0,0.2)]"
     >
       <v-menu open-on-click location="top" class="h-fit w-fit">
         <template v-slot:activator="{ props }">
@@ -81,9 +82,9 @@ function setMood(selectedMood: string, selectedColor: string) {
 
       <input
         type="text"
-        class="sm:text-sm w-4/5 appearance-none leading-5 focus:z-10 focus:outline-none sm:leading-5"
+        class="w-4/5 appearance-none leading-5 focus:z-10 focus:outline-none sm:text-sm sm:leading-5"
       />
-      <button>
+      <button @click="router.push('/innercircles')">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"

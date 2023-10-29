@@ -24,14 +24,15 @@ import router from '@/router'
     </div>
     <div
       class="flex w-2/5 justify-center py-2"
-      @click="router.push('/innercircles')"
+      @click="router.push('/question')"
     >
       <div
         class="flex h-12 w-12 items-center justify-center"
         :class="{
           'active-nav-circles':
             $router.currentRoute.value.path === '/innercircles' ||
-            $router.currentRoute.value.path === '/question'
+            $router.currentRoute.value.path === '/question' ||
+            /^\/circle/.test(router.currentRoute.value.path)
         }"
       >
         <chat-bubble-left-right-icon class="w-6"></chat-bubble-left-right-icon>

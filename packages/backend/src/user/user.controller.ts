@@ -55,6 +55,13 @@ export class UserController {
     return this.userService.findAll();
   }
 
+  @UseGuards(AuthenticatedGuard)
+  @Get('/current')
+  getCurrentUserFromSession(@Request() req) {
+    const userId = req.session.passport.user.userId;
+    return userId;
+  }
+
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.userService.remove(+id);

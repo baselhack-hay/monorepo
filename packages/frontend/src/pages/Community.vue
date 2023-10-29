@@ -17,10 +17,21 @@ const dialog = ref(false);
 const textareaValue = ref('');
 const titleValue = ref('');
 const posts = ref<Post[]>([]);
+const pageIndex = ref(1);
+const timestamp = ref('');
+const end = ref(false);
+
+const generateTimestamp = () => {
+  const currentDate = new Date();
+  currentDate.setHours(currentDate.getHours() - 1);
+  timestamp.value = currentDate.toISOString();
+}
+
 const emotion = ref<string>('');
 
 onMounted(async () => {
-  await getAllPosts();
+  generateTimestamp();
+  await getPosts();
 });
 
 const createPost = async () => {
@@ -36,9 +47,13 @@ const createPost = async () => {
       },
       withCredentials: true
       })
-      await getAllPosts();
+      posts.value = [];
+      end.value = false;
       titleValue.value = '';
       textareaValue.value = '';
+      pageIndex.value = 1;
+      generateTimestamp();
+      await getPosts();
       dialog.value = false;
     }
     catch (error){
@@ -47,24 +62,38 @@ const createPost = async () => {
   }
 }
 
-const getAllPosts = async () => {
-  try {
-    const result = await axios.get(`${import.meta.env.VITE_BACKEND_HOST}/community/post`, {
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      withCredentials: true
-    })
-    posts.value = result.data.reverse();
-  } catch (error){
+const getPosts = async () => {
+  if(!end.value){
+    try {
+      const result = await axios.get(`${import.meta.env.VITE_BACKEND_HOST}/community/post/paginate?page=${pageIndex.value}&timestamp=${timestamp.value}&pageSize=10`, {
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        withCredentials: true
+      })
+      posts.value = [...posts.value, ...result.data.posts]
+      if(result.data.posts.length === 0){
+        end.value = true;
+      }
+    } catch (error){
+    }
   }
 }
+
+window.onscroll = () => {
+  let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight === document.documentElement.offsetHeight;
+
+  if (bottomOfWindow) {
+    pageIndex.value++;
+    getPosts();
+  }
+};
 
 </script>
 
 <template>
   <main>
-    <div class="inlay flex flex-col gap-y-6">
+    <div class="inlay flex flex-col gap-y-6" id="scrollwindow">
       <CommunityCard v-for="post in posts" @click="router.push(`/posts/${post.postId}`)" :id="post.postId" :title="post.title" :content="post.description" :variant="post.emotion"></CommunityCard>
     </div>
     <div class=" fixed bottom-20 w-full flex flex-row-reverse px-6">
@@ -74,6 +103,7 @@ const getAllPosts = async () => {
     </div>
     <v-dialog
         v-model="dialog"
+        width="auto"
     >
       <div class="flex bg-white rounded-lg p-4 flex-column gap-y-4">
         <div class="w-full flex justify-between">

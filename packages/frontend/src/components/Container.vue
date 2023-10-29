@@ -6,10 +6,10 @@ const router = useRouter()
 const bgColor = ref()
 
 watch(router.currentRoute, () => {
-  const isCommunity =
-    router.currentRoute.value.path == '/' ||
-    /^\/posts/.test(router.currentRoute.value.path)
-  bgColor.value = isCommunity ? 'white' : 'scared-light'
+  const isCircles =
+    router.currentRoute.value.path == '/innercircles' ||
+    router.currentRoute.value.path == '/question'
+  bgColor.value = isCircles ? '' : 'white'
 })
 </script>
 
