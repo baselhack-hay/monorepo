@@ -4,7 +4,7 @@ import { ref } from 'vue'
 const mood = ref('')
 const color = ref('')
 
-const items: object[] = [
+const items: {title: string, color: string}[] = [
   {
     title: 'Happy',
     color: 'bg-happy'
