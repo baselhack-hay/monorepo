@@ -40,7 +40,7 @@ function setMood(selectedMood: string, selectedColor: string) {
 <template>
   <div class="flex h-fit w-full justify-center">
     <div
-      class="fixed bottom-0 mx-auto mb-[100px] flex h-fit w-11/12 justify-between rounded-full p-4 font-poppins shadow-[0_3px_10px_rgb(0,0,0,0.2)]"
+      class="fixed bottom-0 mx-auto mb-[100px] flex h-fit w-11/12 justify-between rounded-full bg-white p-4 font-poppins shadow-[0_3px_10px_rgb(0,0,0,0.2)]"
     >
       <v-menu open-on-click location="top" class="h-fit w-fit">
         <template v-slot:activator="{ props }">
