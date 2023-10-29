@@ -16,7 +16,7 @@ import { UpdatePostDto } from './dto/update-post.dto';
 import { AuthenticatedGuard } from '../../user/authenticated.guard';
 import { ApiBody, ApiTags } from '@nestjs/swagger';
 
-@Controller('post')
+@Controller('/community/post')
 @ApiTags('Post')
 @UseGuards(AuthenticatedGuard)
 export class PostController {
