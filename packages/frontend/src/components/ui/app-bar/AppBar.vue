@@ -15,8 +15,8 @@ import router from '@/router'
         class="flex h-12 w-12 items-center justify-center"
         :class="{
           'active-nav-community':
-            router.currentRoute.value.path === '/' ||
-            /^\/posts/.test(router.currentRoute.value.path)
+            $router.currentRoute.value.path === '/' ||
+            /^\/posts/.test($router.currentRoute.value.path)
         }"
       >
         <user-group-icon class="w-6"></user-group-icon>
@@ -24,14 +24,14 @@ import router from '@/router'
     </div>
     <div
       class="flex w-2/5 justify-center py-2"
-      @click="router.push('/innercircles')"
+      @click="router.push('/question')"
     >
       <div
         class="flex h-12 w-12 items-center justify-center"
         :class="{
           'active-nav-circles':
-            router.currentRoute.value.path === '/innercircles' ||
-            router.currentRoute.value.path === '/question' ||
+            $router.currentRoute.value.path === '/innercircles' ||
+            $router.currentRoute.value.path === '/question' ||
             /^\/circle/.test(router.currentRoute.value.path)
         }"
       >

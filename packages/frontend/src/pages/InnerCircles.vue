@@ -20,7 +20,6 @@ const circles = ref<Circle[]>([])
 const getAllCirclesOfUsers = async () => {
   try {
     const userId = await getCurrentUserId()
-    console.log(userId)
     const result = await axios.get(
       `${import.meta.env.VITE_BACKEND_HOST}/circle/group/user/${userId}`,
       {
