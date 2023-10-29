@@ -16,7 +16,7 @@ async function bootstrap() {
         // secure: true,
         httpOnly: false,
         maxAge: 60000,
-        domain: 'https://hay-baselhack-backend-dev.vercel.app',
+        domain: '.vercel.app',
       },
     }),
   );
