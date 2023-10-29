@@ -12,10 +12,11 @@ async function bootstrap() {
       resave: false,
       saveUninitialized: false,
       cookie: {
-        sameSite: 'none',
-        secure: true,
+        sameSite: 'strict',
+        // secure: true,
         httpOnly: false,
         maxAge: 60000,
+        domain: 'https://hay-baselhack-dev.vercel.app',
       },
     }),
   );
