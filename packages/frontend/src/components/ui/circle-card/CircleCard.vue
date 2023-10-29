@@ -16,7 +16,7 @@ defineProps<Props>()
   >
     <span class="flex gap-x-4">
       {{ $props.groupName }}
-      <cog-6-tooth-icon class="w-6"></cog-6-tooth-icon>
+      <cog-6-tooth-icon class="w-6" @click="router.push(`/group/${id}`)"></cog-6-tooth-icon>
     </span>
     <arrow-right-icon
         class="w-6"
