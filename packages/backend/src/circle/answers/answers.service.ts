@@ -1,26 +1,50 @@
 import { Injectable } from '@nestjs/common';
 import { CreateAnswerDto } from './dto/create-answer.dto';
 import { UpdateAnswerDto } from './dto/update-answer.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Answer } from './entities/answer.entity';
+import { Repository } from 'typeorm';
+import { UserService } from '../../user/user.service';
 
 @Injectable()
 export class AnswersService {
-  create(createAnswerDto: CreateAnswerDto) {
-    return 'This action adds a new answer';
+  constructor(
+    @InjectRepository(Answer)
+    private readonly answerRepository: Repository<Answer>,
+    private readonly userService: UserService,
+  ) {}
+
+  async create(createAnswerDto: CreateAnswerDto) {
+    const user = await this.userService.findById(createAnswerDto.userId);
+
+    const answer = new Answer();
+    answer.answer = createAnswerDto.answer;
+    answer.user = user;
+
+    return this.answerRepository.save(answer);
   }
 
   findAll() {
-    return `This action returns all answers`;
+    return this.answerRepository.find();
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} answer`;
+    return this.answerRepository.findOneBy({ answerId: id });
   }
 
-  update(id: number, updateAnswerDto: UpdateAnswerDto) {
-    return `This action updates a #${id} answer`;
+  async update(id: number, updateAnswerDto: UpdateAnswerDto) {
+    const currentAnswer = await this.findOne(id);
+
+    const updatedAnswer = new Answer();
+    updatedAnswer.answerId = currentAnswer.answerId;
+    updatedAnswer.answer = updateAnswerDto.answer ?? currentAnswer.answer;
+    updatedAnswer.userId = currentAnswer.userId;
+    updatedAnswer.user = currentAnswer.user;
+
+    return this.answerRepository.save(updatedAnswer);
   }
 
   remove(id: number) {
-    return `This action removes a #${id} answer`;
+    return this.answerRepository.delete(id);
   }
 }
