@@ -9,7 +9,7 @@ import {
 } from 'typeorm';
 import { User } from '../../../user/entities/user.entity';
 
-export enum Emotion {
+export enum AnswerEmotion {
   SUPRISED = 'surprised',
   HAPPY = 'happy',
   SCARED = 'scared',
@@ -41,8 +41,8 @@ export class Answer {
 
   @Column({
     type: 'enum',
-    enum: Emotion,
-    default: Emotion.HAPPY,
+    enum: AnswerEmotion,
+    default: AnswerEmotion.HAPPY,
   })
-  emotion: Emotion;
+  emotion: AnswerEmotion;
 }
