@@ -20,6 +20,7 @@ async function bootstrap() {
       'http://localhost:8080',
       'https://hay-baselhack-dev.vercel.app',
       'https://hay-baselhack.vercel.app',
+      'https://baselhack-proxy.vercel.app',
     ],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
     allowedHeaders: 'Content-Type, Accept',
@@ -27,12 +28,13 @@ async function bootstrap() {
   });
 
   const options = new DocumentBuilder()
-    .setTitle('HAY PI')
+    .setTitle('HAY API')
     .setDescription('HAY API documentation')
     .setVersion('1.0')
     .addServer('http://localhost:3000/', 'Local environment')
     .addServer('https://hay-backend-dev.vercel.app', 'Develpment')
-    .addServer('https://hay-backend.vercel.app/', 'Production')
+    // .addServer('https://hay-backend.vercel.app/', 'Production')
+    .addServer('https://baselhack-proxy.vercel.app/', 'Production')
     .build();
 
   const document = SwaggerModule.createDocument(app, options);
