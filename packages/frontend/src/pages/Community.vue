@@ -104,7 +104,6 @@ window.onscroll = () => {
     document.documentElement.scrollTop + window.innerHeight ===
     document.documentElement.offsetHeight
 
-  console.log(bottomOfWindow, loading.value)
   if (bottomOfWindow && !loading.value) {
     pageIndex.value++
     getPosts()
