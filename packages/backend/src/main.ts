@@ -2,9 +2,16 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import session from 'express-session';
 import passport from 'passport';
+import genFunc from 'connect-pg-simple';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 
 async function bootstrap() {
+  const PostgresqlStore = genFunc(session);
+  const sessionStore = new PostgresqlStore({
+    conString:
+      'postgres://default:bF5S2DdGhnot@ep-shrill-lake-84036745.eu-central-1.postgres.vercel-storage.com:5432/verceldb?sslmode=require',
+  });
+
   const app = await NestFactory.create(AppModule);
   app.use(
     session({
@@ -15,6 +22,7 @@ async function bootstrap() {
         secure: 'auto',
         maxAge: 1000 * 60 * 60 * 2,
       },
+      store: sessionStore,
     }),
   );
   app.use(passport.initialize());
