@@ -1,120 +1,123 @@
 <script setup lang="ts">
-import axios from "axios";
-import {
-  UserMinusIcon,
-  UserPlusIcon,
-} from '@heroicons/vue/24/outline'
-import router from "@/router";
-import {ref} from "vue";
+import axios from 'axios'
+import { UserPlusIcon } from '@heroicons/vue/24/outline'
+import router from '@/router'
+import { onMounted, ref } from 'vue'
 
-const userName = ref<string>();
-let userId = ref<number>();
+const userName = ref<string>()
+let userId = ref<number>()
+let dialog = ref<boolean>(false)
+const users = ref<{ username: string; userId: number }[]>([])
+
 const groupId = () => {
-  return router.currentRoute.value.params.id;
+  return router.currentRoute.value.params.id
 }
 
+onMounted(async () => {
+  await getUsers()
+})
 
 const inviteUser = async () => {
-  await axios.get(`${import.meta.env.VITE_BACKEND_HOST}/user`,
-      {
-        headers: {
-          'Content-Type':
-              'application/json'
-        },
-        withCredentials: true
-      }
-  ).then(res => res.data.map((user:any) => {
-    if (user.username === userName.value) {
-      console.log('setting');
-      userId.value = user.userId;
-    }
-  }))
+  await axios
+    .get(`${import.meta.env.VITE_BACKEND_HOST}/user`, {
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      withCredentials: true
+    })
+    .then((res) => {
+      res.data.map((user: any) => {
+        if (user.username === userName.value) {
+          console.log('setting')
+          userId.value = user.userId
+        }
+      })
+    })
 
   try {
     console.log('submitting: ', userName.value, userId.value)
     const result = await axios.patch(
-        `${import.meta.env.VITE_BACKEND_HOST}/circle/group/${groupId()}`,
-        {userIds: [userName.value, userId.value]},
-        {
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          withCredentials: true
-        }
+      `${import.meta.env.VITE_BACKEND_HOST}/circle/group/${groupId()}`,
+      { userIds: [userName.value, userId.value] },
+      {
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        withCredentials: true
+      }
     )
+    dialog.value = false
+    userName.value = ''
+    await getUsers()
     return result.data
-  } catch (error) {
-  }
+  } catch (error) {}
 }
 
-const users = [
-  {
-    username: "Meredit Sommer",
-    profileImage: "../../public/images/profileImages/ente.png"
-  },
-  {
-    username: "Samuel Lupica",
-    profileImage: "../../public/images/profileImages/faultier.png"
-  },
-  {
-    username: "Nadia Kramer",
-    profileImage: "../../public/images/profileImages/waschbär.png"
-  }
-
-];
-
-
+const getUsers = async () => {
+  try {
+    const result = await axios.get(
+      `${import.meta.env.VITE_BACKEND_HOST}/circle/group/${groupId()}`,
+      {
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        withCredentials: true
+      }
+    )
+    users.value = result.data.users
+  } catch (error) {}
+}
 </script>
 
 <template>
   <div class="inlay flex flex-col items-center">
-    <div class="drop-shadow-lg mb-12 flex flex-col w-full">
-      <div class="font-yeseva text-6 text-center rounded-t-2xl bg-scared-light py-2">
+    <div class="mb-12 flex w-full flex-col drop-shadow-lg">
+      <div
+        class="font-yeseva text-6 bg-scared-light rounded-t-2xl py-2 text-center"
+      >
         Members
       </div>
-      <div class="p-4 bg-white drop-shadow-lg rounded-b-2xl">
+      <div class="rounded-b-2xl bg-white p-4 drop-shadow-lg">
         <div class="flex flex-col gap-4">
-          <div v-for="user in users" class="flex gap-6 items-center justify-between">
-            <img :src="user.profileImage" class="w-12 h-12 rounded-full">
+          <div
+            v-for="user in users"
+            class="flex items-center justify-between gap-6"
+          >
             {{ user.username }}
-            <user-minus-icon class="w-8"></user-minus-icon>
           </div>
         </div>
       </div>
     </div>
 
     <v-dialog
-        class="!w-96 !font-poppins"
-        transition="dialog-bottom-transition"
-        width="auto"
+      v-model="dialog"
+      class="!font-poppins !w-96"
+      transition="dialog-bottom-transition"
+      width="auto"
     >
       <template v-slot:activator="{ props }">
         <v-btn
-            v-bind="props"
-            class="!text-center !w-fit !bg-rejecting !px-8 !py-4 !rounded-full font-poppins shadow-none !flex !gap-2 !align-center"
-        > Invite User
+          @click="dialog = true"
+          v-bind="props"
+          class="font-poppins !align-center !flex !w-fit !gap-2 !rounded-full !bg-rejecting !px-8 !py-4 !text-center shadow-none"
+        >
+          Invite User
           <user-plus-icon class="w-4"></user-plus-icon>
         </v-btn>
       </template>
       <template v-slot:default="{ isActive }">
         <v-card>
-          <v-toolbar
-              class="!bg-rejecting"
-              title="Invite new User"
-          ></v-toolbar>
-          <v-text-field class="w-96"
-                        placeholder="Username"
-                        v-model="userName"
-          >
+          <v-toolbar class="!bg-rejecting" title="Invite new User"></v-toolbar>
+          <v-text-field class="w-96" placeholder="Username" v-model="userName">
           </v-text-field>
           <v-card-actions class="justify-between">
-            <v-btn
-                variant="text"
-                @click="isActive.value = false"
-            >Close
-            </v-btn>
-            <Button @click="inviteUser()" type="submit" variant="outline"
-                    class="w-fit px-8 py-2 drop-shadow-md rounded-full text-4 bg-white border-none font-poppins">
+            <v-btn variant="text" @click="isActive.value = false">Close</v-btn>
+            <Button
+              @click="inviteUser()"
+              type="submit"
+              variant="outline"
+              class="text-4 font-poppins w-fit rounded-full border-none bg-white px-8 py-2 drop-shadow-md"
+            >
               Submit
             </Button>
           </v-card-actions>
