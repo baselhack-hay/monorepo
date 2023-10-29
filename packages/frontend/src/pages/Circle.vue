@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import CommunityCard from '@/components/ui/communityCard/CommunityCard.vue'
-import { useRouter } from 'vue-router'
-const router = useRouter()
 </script>
 
 <template>

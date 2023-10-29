@@ -25,6 +25,11 @@ export class AnswersController {
     return this.answersService.findAll();
   }
 
+  @Get('/user/:id/daily')
+  findDailyQuestion(@Param('id') id: string) {
+    return this.answersService.findDailyQuestionByUserId(+id);
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.answersService.findOne(+id);
