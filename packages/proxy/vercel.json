@@ -1,14 +1,14 @@
 {
   "rewrites": [
-    { "source": "/api/", "destination": "https://hay-backend-dev.vercel.app/" },
+    { "source": "/api/", "destination": "https://hay-backend.vercel.app/" },
     {
       "source": "/api/:match*",
-      "destination": "https://hay-backend-dev.vercel.app/:match*"
+      "destination": "https://hay-backend.vercel.app/:match*"
     },
-    { "source": "/", "destination": "https://hay-baselhack-dev.vercel.app" },
+    { "source": "/", "destination": "https://hay-baselhack.vercel.app" },
     {
       "source": "/:match*",
-      "destination": "https://hay-baselhack-dev.vercel.app/:match*"
+      "destination": "https://hay-baselhack.vercel.app/:match*"
     }
   ]
 }
