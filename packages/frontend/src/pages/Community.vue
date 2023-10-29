@@ -104,7 +104,6 @@ window.onscroll = () => {
     document.documentElement.scrollTop + window.innerHeight ===
     document.documentElement.offsetHeight
 
-  console.log(bottomOfWindow, loading.value)
   if (bottomOfWindow && !loading.value) {
     pageIndex.value++
     getPosts()
@@ -149,12 +148,16 @@ window.onscroll = () => {
           </v-text-field>
         </div>
         <div>
-          <v-textarea v-model="textareaValue" label="Content" class="font-poppins" />
+          <v-textarea
+            v-model="textareaValue"
+            label="Content"
+            class="font-poppins"
+          />
           <div class="flex w-full flex-row-reverse justify-between">
             <paper-airplane-icon class="w-6" @click="createPost" />
           </div>
         </div>
-        <div v-if="error" class="bg-sad-light font-poppins w-fit rounded p-2">
+        <div v-if="error" class="w-fit rounded bg-sad-light p-2 font-poppins">
           {{ error }}
         </div>
       </div>
