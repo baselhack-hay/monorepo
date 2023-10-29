@@ -87,7 +87,7 @@ const createCircle = async () => {
       </div>
       <div
         v-else
-        class="font-yeseva text-5 rounded-2xl bg-white p-4 drop-shadow-lg"
+        class="font-poppins text-5 rounded-2xl bg-white p-4 drop-shadow-lg"
       >
         Join a Circle or create a new one.
       </div>

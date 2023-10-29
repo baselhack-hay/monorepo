@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { Cog6ToothIcon, ArrowRightIcon } from '@heroicons/vue/24/outline'
-import router from '@/router'
 
 interface Props {
   groupName: string
@@ -18,9 +17,8 @@ defineProps<Props>()
       {{ $props.groupName }}
       <cog-6-tooth-icon class="w-6"></cog-6-tooth-icon>
     </span>
-    <arrow-right-icon
-      class="w-6"
-      @click="router.push(`/circle/${id}`)"
-    ></arrow-right-icon>
+    <router-link class="inline-block" :to="`/circle/${id}`">
+      <arrow-right-icon class="w-6"></arrow-right-icon>
+    </router-link>
   </div>
 </template>
