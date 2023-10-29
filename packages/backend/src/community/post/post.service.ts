@@ -49,4 +49,21 @@ export class PostService {
   remove(id: number) {
     return this.postRepository.delete(id);
   }
+
+  async paginatePosts(page: number, pageSize: number, timestamp: Date | null) {
+    const query = this.postRepository
+      .createQueryBuilder('post')
+      .orderBy('post.createdAt', 'DESC');
+
+    if (timestamp) {
+      query.where('post.createdAt <= :timestamp', { timestamp });
+    }
+
+    const [posts, total] = await query
+      .skip((page - 1) * pageSize)
+      .take(pageSize)
+      .getManyAndCount();
+
+    return { posts, total };
+  }
 }
